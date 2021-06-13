@@ -80,8 +80,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="be.uantwerpen.fti.ei.bc.Game.GameState" />
       <recent name="be.uantwerpen.fti.ei.bc.Main" />
       <recent name="be.uantwerpen.fti.ei.bc" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\basca\OneDrive - uantwerpen\School\34-EI\4-Geavanceerd\Projects\EindprojectGeavProg\Resources\Backgrounds" />
+      <recent name="C:\Users\basca\OneDrive - uantwerpen\School\34-EI\4-Geavanceerd\Projects\EindprojectGeavProg\Resources" />
+      <recent name="C:\Users\basca\OneDrive - uantwerpen\School\34-EI\4-Geavanceerd\Projects\EindprojectGeavProg" />
     </key>
   </component>
   <component name="RunManager">
@@ -121,7 +127,7 @@
       <option name="presentableId" value="Default" />
       <updated>1623573080501</updated>
       <workItem from="1623573081800" duration="11711000" />
-      <workItem from="1623595712347" duration="723000" />
+      <workItem from="1623595712347" duration="11138000" />
     </task>
     <servers />
   </component>

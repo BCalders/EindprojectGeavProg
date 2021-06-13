@@ -17,7 +17,7 @@ public class J2dTestSquare extends TestSquare {
     @Override
     public void draw() {
         Graphics2D g2d = gr.getG2d();
-        g2d.setColor(Color.BLUE);
+        g2d.setColor(Color.GREEN);
         g2d.fillRect(getX(), getY() , 10, 10);
     }
 }

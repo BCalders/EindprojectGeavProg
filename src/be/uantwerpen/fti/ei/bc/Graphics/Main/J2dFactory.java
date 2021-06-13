@@ -1,21 +1,26 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Main;
 
+import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
+import be.uantwerpen.fti.ei.bc.Game.GameState.MenuState;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 import be.uantwerpen.fti.ei.bc.Game.Main.GraphicsClass;
 import be.uantwerpen.fti.ei.bc.Game.Entities.TestSquare;
 import be.uantwerpen.fti.ei.bc.Graphics.Entities.J2dTestSquare;
+import be.uantwerpen.fti.ei.bc.Graphics.GameState.J2dMenuState;
 
 public class J2dFactory extends AFactory {
 
     private J2dGraph graph;
 
     public J2dFactory() {
-//        graph = new J2dGraph();
     }
 
     public GraphicsClass createGraphicsClass(){
         graph =  new J2dGraph();
         return graph;
+    }
+    public MenuState createMenuState(GameStateManager gsm){
+        return new J2dMenuState(graph, gsm);
     }
 
     @Override
