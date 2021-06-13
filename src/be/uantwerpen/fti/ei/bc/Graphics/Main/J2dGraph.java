@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 public class J2dGraph extends GraphicsClass {
 
-    private static final int WIDTH = 720, HEIGHT = 960;
+    private static final int WIDTH = 190, HEIGHT = 254, scale = 3;
 
     public BufferedImage image;
     private Graphics2D g2d;
@@ -28,7 +28,7 @@ public class J2dGraph extends GraphicsClass {
         frame.setContentPane(panel);
         frame.setFocusable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(WIDTH, HEIGHT);
+        frame.setSize(WIDTH * scale, HEIGHT * scale);
         frame.setResizable(false);
         frame.setVisible(true);
 
@@ -40,17 +40,17 @@ public class J2dGraph extends GraphicsClass {
         return g2d;
     }
 
-    public void render(){
+    public void render() {
         panel.repaint();
     }
 
     private void doDrawing(Graphics g) {
         Graphics2D graph2d = (Graphics2D) g;
         Toolkit.getDefaultToolkit().sync();
-        graph2d.drawImage(image, 0, 0, null);
+        graph2d.drawImage(image, 0, 0, WIDTH * scale, HEIGHT * scale, null);
         graph2d.dispose();
         if (g2d != null)
-            g2d.drawImage(image,0, 0, null);
+            g2d.drawImage(image, 0, 0, null);
     }
 
 
