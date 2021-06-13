@@ -24,7 +24,7 @@ public class Game {
         isRunning = true;
         graph = f.createGraphicsClass();
 
-        ts = f.createTS(50, 50, .1, .2);
+        ts = f.createTS(50, 50, 0, 0);
 
         while (isRunning) {
             s.go();
