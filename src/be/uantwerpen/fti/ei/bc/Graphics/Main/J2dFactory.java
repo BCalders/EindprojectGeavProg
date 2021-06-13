@@ -28,5 +28,10 @@ public class J2dFactory extends AFactory {
         return new J2dTestSquare(graph, x, y, dx, dy);
     }
 
+    @Override
+    public KeyHandler createKeyHandler() {
+        return new KeyHandler(graph);
+    }
+
 
 }

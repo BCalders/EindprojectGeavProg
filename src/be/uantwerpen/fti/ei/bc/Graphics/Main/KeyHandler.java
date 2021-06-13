@@ -26,6 +26,15 @@ public class KeyHandler implements KeyListener {
             }
         }
 
+        public boolean isClicked(){
+            if (isClicked){
+                isClicked = false;
+                return true;
+            }
+            else
+                return false;
+        }
+
         public void tick() {
             if (absorbs < presses) {
                 absorbs++;
@@ -47,7 +56,7 @@ public class KeyHandler implements KeyListener {
     public Key esc = new Key();
 
     public KeyHandler(J2dGraph gr) {
-        gr.getPanel().addKeyListener(this);
+        gr.getFrame().addKeyListener(this);
     }
 
     public void releaseAll() {
@@ -89,10 +98,12 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         toggle(e, true);
+        tick();
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         toggle(e, false);
+        tick();
     }
 }

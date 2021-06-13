@@ -2,8 +2,10 @@ package be.uantwerpen.fti.ei.bc.Game.GameState;
 
 
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
+import be.uantwerpen.fti.ei.bc.Graphics.Main.KeyHandler;
 
 import java.util.ArrayList;
+import java.util.Currency;
 
 public class GameStateManager {
 
@@ -23,6 +25,11 @@ public class GameStateManager {
         gameStates.add(f.createMenuState(this));
     }
 
+    public void exitGame(String exitReason){
+        System.out.println("Game was manually quit: "+ exitReason);
+        System.exit(0);
+    }
+
     public void setState(int state) {
         currentState = state;
         gameStates.get(currentState).init();
@@ -36,11 +43,10 @@ public class GameStateManager {
         gameStates.get(currentState).draw();
     }
 
-    public void keyPressed(int k) {
-        gameStates.get(currentState).keyPressed(k);
-    }
-
-    public void keyReleased(int k) {
-        gameStates.get(currentState).keyReleased(k);
+    public void input(KeyHandler key){
+        gameStates.get(currentState).input(key);
+        if(key.esc.isDown){
+            exitGame("Player pressed ESC!");
+        }
     }
 }

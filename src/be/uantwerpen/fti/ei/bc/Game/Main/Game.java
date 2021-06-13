@@ -8,7 +8,7 @@ import be.uantwerpen.fti.ei.bc.Graphics.Main.KeyHandler;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Game implements KeyListener { //Keylistner moet er nog uit
+public class Game{ //Keylistner moet er nog uit
 
     private AFactory f;
     
@@ -32,14 +32,15 @@ public class Game implements KeyListener { //Keylistner moet er nog uit
         isRunning = true;
         graph = f.createGraphicsClass();
 
-
         gsm = new GameStateManager(f);
+        KeyHandler key = f.createKeyHandler();
 
         ts = f.createTS(50, 50, 0, 0);
 
         while (isRunning) {
             s.go();
 
+            input(key);
             update();
             draw();
             graph.render();
@@ -66,19 +67,7 @@ public class Game implements KeyListener { //Keylistner moet er nog uit
         ts.draw();
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        gsm.keyPressed(e.getKeyCode());
-        System.out.println(e.getKeyCode());
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        gsm.keyReleased(e.getKeyCode());
+    private void input(KeyHandler key){
+        gsm.input(key);
     }
 }

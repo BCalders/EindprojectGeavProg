@@ -44,6 +44,10 @@ public class J2dGraph extends GraphicsClass {
         return panel;
     }
 
+    public JFrame getFrame() {
+        return frame;
+    }
+
     public void render() {
         panel.repaint();
     }

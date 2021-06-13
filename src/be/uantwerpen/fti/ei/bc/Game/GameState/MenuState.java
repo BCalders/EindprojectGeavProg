@@ -1,5 +1,7 @@
 package be.uantwerpen.fti.ei.bc.Game.GameState;
 
+import be.uantwerpen.fti.ei.bc.Graphics.Main.KeyHandler;
+
 import java.awt.event.KeyEvent;
 
 public abstract class MenuState extends GameState{
@@ -48,27 +50,22 @@ public abstract class MenuState extends GameState{
             System.out.println("player pressed HELP!");
         }
         if(currentChoice == 2) {
-            System.exit(0);
+            gsm.exitGame("Player pressed Quit Game!");
         }
     }
 
-    @Override
-    public void keyPressed(int k) {
-        if(k == KeyEvent.VK_ENTER){
+    public void input(KeyHandler key){
+        if(key.enter.isClicked())
             select();
-        }
-        if(k == KeyEvent.VK_UP){
+        if(key.up.isClicked()){
             currentChoice--;
-            currentChoice %= 3;
+            if(currentChoice < 0)
+                currentChoice = 2;
         }
-        if(k == KeyEvent.VK_DOWN){
+        if(key.down.isClicked()){
             currentChoice++;
-            currentChoice %= 3;
+            if(currentChoice > 2)
+                currentChoice = 0;
         }
-    }
-
-    @Override
-    public void keyReleased(int k) {
-
     }
 }
