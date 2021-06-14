@@ -6,20 +6,20 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Background {
 
-    private J2dGraph gr;
+    private final J2dGraph gr;
 
     private BufferedImage image;
 
     private double x, y, dx, dy;
 
     public Background(J2dGraph gr, String s){
-
+        this.gr = gr;
         try {
-            image = ImageIO.read(getClass().getResourceAsStream(s));
-            this.gr = gr;
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(s)));
         } catch (IOException e) {
             e.printStackTrace();
         }

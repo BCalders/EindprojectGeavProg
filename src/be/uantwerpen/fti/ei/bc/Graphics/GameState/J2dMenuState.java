@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class J2dMenuState extends MenuState {
 
-    private J2dGraph gr;
+    private final J2dGraph gr;
 
     private Background bg;
 

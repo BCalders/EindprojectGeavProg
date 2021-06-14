@@ -34,15 +34,13 @@ public abstract class MenuState extends GameState{
     public abstract void draw();
 
     @Override
-    public void update() {
-
-    }
+    public void update() {}
 
     private void select(){
         if(currentChoice == 0){
             // start
             System.out.println("player pressed START!");
-            gsm.setState(gsm.LEVELSTATE);
+            gsm.setState(GameStateManager.LEVELSTATE);
         }
         if(currentChoice == 1) {
             //help

@@ -11,10 +11,10 @@ public class J2dGraph extends GraphicsClass {
     public static final int WIDTH = 600, HEIGHT = 800;
 
     public BufferedImage image;
-    private Graphics2D g2d;
+    private final Graphics2D g2d;
 
-    private JFrame frame;
-    private JPanel panel;
+    private final JFrame frame;
+    private final JPanel panel;
 
     public J2dGraph() {
         frame = new JFrame("Project");

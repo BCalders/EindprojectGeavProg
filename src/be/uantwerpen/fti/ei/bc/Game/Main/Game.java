@@ -7,11 +7,7 @@ import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
 
 public class Game{
 
-    private AFactory f;
-    
-    private boolean isRunning;
-
-    private GraphicsClass graph;
+    private final AFactory f;
 
     private GameStateManager gsm;
 
@@ -26,8 +22,8 @@ public class Game{
         long wait;
         Stopwatch s = new Stopwatch(60);
 
-        isRunning = true;
-        graph = f.createGraphicsClass();
+        boolean isRunning = true;
+        GraphicsClass graph = f.createGraphicsClass();
 
         gsm = new GameStateManager(f);
         KeyHandler key = f.createKeyHandler();
@@ -44,7 +40,6 @@ public class Game{
 
             s.stop();
             wait = s.calculateWait();
-            //System.out.println("waitTime = " + wait);
             try {
                 Thread.sleep(wait);
             } catch (InterruptedException e) {
