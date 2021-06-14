@@ -8,17 +8,14 @@ import java.util.ArrayList;
 
 public class GameStateManager {
 
-    private AFactory f;
-
-    private ArrayList<GameState> gameStates;
+    private final ArrayList<GameState> gameStates;
     private int currentState;
 
     public static final int MENUSTATE = 0, LEVELSTATE = 1;
 
 
     public GameStateManager(AFactory f) {
-        this.f = f;
-        gameStates = new ArrayList<GameState>();
+        gameStates = new ArrayList<>();
 
         currentState = MENUSTATE;
         gameStates.add(f.createMenuState(this));

@@ -3,13 +3,12 @@ package be.uantwerpen.fti.ei.bc.Game.Stopwatch;
 public class Stopwatch {
 
     private long start, stop, elapsed, targetTime;
-    private int FPS;
+
 
     public Stopwatch(){}
 
     public Stopwatch(int fps){
-        FPS = fps;
-        targetTime = 1000/FPS;
+        targetTime = 1000/fps;
     }
 
     public long getStart() {

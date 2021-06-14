@@ -4,9 +4,12 @@ import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
+import java.awt.*;
+
 public class J2dLevelState extends LevelState {
 
-    private J2dGraph gr;
+    private final J2dGraph gr;
+    private Background bg;
 
     public J2dLevelState(J2dGraph graph, GameStateManager gsm) {
         super(gsm);
@@ -14,7 +17,14 @@ public class J2dLevelState extends LevelState {
     }
 
     @Override
+    public void update() {
+        super.update();
+        //bg.update();
+    }
+
+    @Override
     public void draw() {
+        Graphics2D g2d = gr.getG2d();
 
     }
 }
