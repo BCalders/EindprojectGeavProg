@@ -1,8 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Game.GameState;
 
-import be.uantwerpen.fti.ei.bc.Graphics.Main.KeyHandler;
-
-import java.awt.event.KeyEvent;
+import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
 
 public abstract class MenuState extends GameState{
 

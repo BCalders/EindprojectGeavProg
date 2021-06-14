@@ -1,7 +1,5 @@
 package be.uantwerpen.fti.ei.bc.Graphics.GameState;
 
-import be.uantwerpen.fti.ei.bc.Game.Main.Game;
-import be.uantwerpen.fti.ei.bc.Game.Main.GraphicsClass;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import javax.imageio.ImageIO;

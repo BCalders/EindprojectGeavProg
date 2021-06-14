@@ -2,7 +2,7 @@ package be.uantwerpen.fti.ei.bc.Game.GameState;
 
 
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
-import be.uantwerpen.fti.ei.bc.Graphics.Main.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
 
 import java.util.ArrayList;
 

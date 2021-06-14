@@ -3,6 +3,7 @@ package be.uantwerpen.fti.ei.bc.Graphics.Main;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.MenuState;
+import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 import be.uantwerpen.fti.ei.bc.Game.Main.GraphicsClass;
 import be.uantwerpen.fti.ei.bc.Game.Entities.TestSquare;

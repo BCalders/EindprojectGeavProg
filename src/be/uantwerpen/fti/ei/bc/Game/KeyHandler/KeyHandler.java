@@ -1,6 +1,7 @@
-package be.uantwerpen.fti.ei.bc.Graphics.Main;
+package be.uantwerpen.fti.ei.bc.Game.KeyHandler;
 
-import java.awt.*;
+import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -44,8 +45,7 @@ public class KeyHandler implements KeyListener {
             }
         }
     }
-
-
+    
     public Key up = new Key();
     public Key down = new Key();
     public Key left = new Key();
