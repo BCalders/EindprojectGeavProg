@@ -21,7 +21,7 @@ public class J2dMenuState extends MenuState {
         this.gr = gr;
 
         try {
-            bg = new Background(gr, "/Backgrounds/menubg.png");
+            bg = new Background(gr, "/Backgrounds/background.png");
             bg.setVector(0, 0.1);
 
             titleColor = new Color(0x34ebc6);

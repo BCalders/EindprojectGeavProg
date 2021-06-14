@@ -44,6 +44,7 @@ public abstract class MenuState extends GameState{
         if(currentChoice == 0){
             // start
             System.out.println("player pressed START!");
+            gsm.setState(gsm.LEVELSTATE);
         }
         if(currentChoice == 1) {
             //help

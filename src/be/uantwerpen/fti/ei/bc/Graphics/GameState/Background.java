@@ -38,8 +38,8 @@ public class Background {
     }
 
     public void update(){
-        x += dx;
-        y += dy;
+        x = (x + dx) % J2dGraph.WIDTH;
+        y = (y + dy) % J2dGraph.HEIGHT;
     }
 
     public void draw(){
