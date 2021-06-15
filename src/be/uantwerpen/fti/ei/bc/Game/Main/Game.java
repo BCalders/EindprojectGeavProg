@@ -1,6 +1,5 @@
 package be.uantwerpen.fti.ei.bc.Game.Main;
 
-import be.uantwerpen.fti.ei.bc.Game.Entities.TestSquare;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Stopwatch.Stopwatch;
@@ -11,7 +10,6 @@ public class Game{
 
     private GameStateManager gsm;
 
-    private TestSquare ts;
 
     public Game(AFactory f) {
         this.f = f;
@@ -27,8 +25,6 @@ public class Game{
 
         gsm = new GameStateManager(f);
         KeyHandler key = f.createKeyHandler();
-
-        ts = f.createTS(50, 50, 0, 0);
 
         while (isRunning) {
             s.go();
@@ -51,12 +47,10 @@ public class Game{
 
     private void update() {
         gsm.update();
-        ts.update();
     }
 
     private void draw() {
         gsm.draw();
-        ts.draw();
     }
 
     private void input(KeyHandler key){

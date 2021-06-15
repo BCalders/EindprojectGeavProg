@@ -25,10 +25,12 @@ public class J2dGraph extends GraphicsClass {
             }
         };
         panel.setBackground(Color.MAGENTA);
-        frame.setContentPane(panel);
+        panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        frame.getContentPane().add(panel);
+        frame.pack();
         frame.setFocusable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(WIDTH, HEIGHT);
+//        frame.setSize(WIDTH, HEIGHT);
         frame.setResizable(false);
         frame.setVisible(true);
 
@@ -60,7 +62,6 @@ public class J2dGraph extends GraphicsClass {
         if (g2d != null)
             g2d.drawImage(image, 0, 0, null);
     }
-
 
 
 }

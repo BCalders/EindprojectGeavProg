@@ -26,5 +26,7 @@ public class J2dLevelState extends LevelState {
     public void draw() {
         Graphics2D g2d = gr.getG2d();
 
+        g2d.setColor(Color.RED);
+        g2d.fillRect(550, 750, 25, 25); // to show game didnt crash
     }
 }
