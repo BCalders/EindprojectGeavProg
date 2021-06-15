@@ -42,7 +42,7 @@ public class Game{
                 e.printStackTrace();
             }
         }
-
+        System.exit(2);
     }
 
     private void update() {

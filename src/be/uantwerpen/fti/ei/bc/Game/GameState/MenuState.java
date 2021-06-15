@@ -4,7 +4,7 @@ import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
 
 public abstract class MenuState extends GameState{
 
-    private String[] options = {"Start", "Help", "Quit"};
+    private String[] options = {"Start", "Highscores", "Quit"};
     private int currentChoice = 0;
 
     public String[] getOptions() {
@@ -44,7 +44,7 @@ public abstract class MenuState extends GameState{
         }
         if(currentChoice == 1) {
             //help
-            System.out.println("player pressed HELP!");
+            System.out.println("player pressed HIGHSCORES!");
         }
         if(currentChoice == 2) {
             gsm.exitGame("Player pressed Quit Game!");

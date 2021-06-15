@@ -30,7 +30,6 @@ public class J2dGraph extends GraphicsClass {
         frame.pack();
         frame.setFocusable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(WIDTH, HEIGHT);
         frame.setResizable(false);
         frame.setVisible(true);
 
