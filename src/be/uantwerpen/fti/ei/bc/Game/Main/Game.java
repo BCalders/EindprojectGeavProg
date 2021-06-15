@@ -2,8 +2,8 @@ package be.uantwerpen.fti.ei.bc.Game.Main;
 
 import be.uantwerpen.fti.ei.bc.Game.Entities.TestSquare;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
-import be.uantwerpen.fti.ei.bc.Game.Stopwatch.Stopwatch;
 import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Game.Stopwatch.Stopwatch;
 
 public class Game{
 
