@@ -28,6 +28,7 @@ public class J2dGraph extends GraphicsClass {
         panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         frame.getContentPane().add(panel);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setFocusable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
