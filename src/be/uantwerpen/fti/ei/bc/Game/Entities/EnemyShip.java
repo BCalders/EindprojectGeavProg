@@ -7,6 +7,8 @@ public abstract class EnemyShip extends Entity{
     public EnemyShip(){
         this.width = 2;
         this.height = 2;
+        cHeight = height;
+        cWidth = width;
     }
 
     public void update(){

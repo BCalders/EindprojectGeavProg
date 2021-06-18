@@ -5,8 +5,8 @@ import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
 import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 
+import javax.swing.*;
 import java.util.ArrayList;
-
 
 public abstract class LevelState extends GameState {
 
@@ -34,7 +34,6 @@ public abstract class LevelState extends GameState {
 
     @Override
     public void update() {
-
     }
 
     public abstract void draw();
@@ -46,10 +45,10 @@ public abstract class LevelState extends GameState {
     @Override
     public void input(KeyHandler key) {
         if (key.left.isDown) {
-            ps.setVector(-ps.getSpeed(), 0);
+            ps.setDx(-ps.getSpeed());
         }
         if (key.right.isDown) {
-            ps.setVector(ps.getSpeed(), 0);
+            ps.setDx(ps.getSpeed());
         }
         if (!key.left.isDown && !key.right.isDown) {
             ps.setVector(0, 0);

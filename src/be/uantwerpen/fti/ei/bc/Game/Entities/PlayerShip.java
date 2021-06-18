@@ -14,25 +14,28 @@ public abstract class PlayerShip extends Entity {
     }
 
     public void update() {
-        double xTemp, yTemp;
 
-        xTemp = (x + dx);
-        yTemp = (y + dy);
+        double xTemp = x + dx;
 
-
-        if (xTemp <= -30 || xTemp >= (30-cWidth)) {
-            dx = 0;
-        } else
-            x = xTemp;
-        if (yTemp <= -40 || yTemp >= (40-cHeight)) {
-            dy = 0;
-        } else
-            y = yTemp;
+        if (dx < 0) {
+            if (xTemp < -30){
+                dx = 0;
+                x = -30;
+            }else
+                x = xTemp;
+        }
+        if (dx > 0) {
+            if (xTemp > 30-cWidth){
+                dx = 0;
+                x = 30-cWidth;
+            }else
+                x = xTemp;
+        }
     }
 
     public abstract void draw();
 
-    public void shoot(){
+    public void shoot() {
         System.out.println("PLAYER SHOOT");
         isShooting = true;
     }

@@ -66,15 +66,26 @@ public abstract class Entity {
         this.dy = dy;
     }
 
-    public Rectangle getRectangle() {
-        return new Rectangle((int) x + (int) cWidth, (int) y + (int) cHeight, (int) cWidth, (int) cHeight);
+    public void setDx(double dx) {
+        this.dx = dx;
     }
 
-    public boolean intersects(Entity other) {
-        Rectangle r1 = getRectangle();
-        Rectangle r2 = other.getRectangle();
-        return r1.intersects(r2);
+    public void setDy(double dy) {
+        this.dy = dy;
     }
+
+    public boolean intersects(Entity o) {
+
+        return (x < o.x + o.cWidth) && (o.x < x + cWidth) && (y < o.y + cHeight) && (o.y < y + cHeight) ;
+    }
+
+    // x + cWidth, y + cHeigth, cWidth, cHeight
+
+//    public boolean intersects(Entity other) {
+//        Rectangle r1 = getRectangle();
+//        Rectangle r2 = other.getRectangle();
+//        return r1.intersects(r2);
+//    }
 
 
 }
