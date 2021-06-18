@@ -4,6 +4,8 @@ import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Stopwatch.Stopwatch;
 
+import static java.lang.Math.ceil;
+
 public class Game{
 
     private final AFactory f;
@@ -27,7 +29,7 @@ public class Game{
         KeyHandler key = f.createKeyHandler();
 
         while (isRunning) {
-            s.go();
+            long start = s.go();
 
             input(key);
             update();
@@ -41,6 +43,8 @@ public class Game{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            double elapsed = (System.currentTimeMillis() - start)/1000.0;
+            graph.setFps((int) ceil(1/elapsed));
         }
         System.exit(2);
     }

@@ -72,22 +72,14 @@ public class KeyHandler implements KeyListener {
     }
 
     public void toggle(KeyEvent e, boolean pressed){
-        if(e.getKeyCode() == KeyEvent.VK_UP)
-            up.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_DOWN)
-            down.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_LEFT)
-            left.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT)
-            right.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_SPACE)
-            attack.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_P)
-            pause.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_ENTER)
-            enter.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
-            esc.toggle(pressed);
+        if(e.getKeyCode() == KeyEvent.VK_UP) up.toggle(pressed);
+        if(e.getKeyCode() == KeyEvent.VK_DOWN) down.toggle(pressed);
+        if(e.getKeyCode() == KeyEvent.VK_LEFT) left.toggle(pressed);
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT) right.toggle(pressed);
+        if(e.getKeyCode() == KeyEvent.VK_SPACE) attack.toggle(pressed);
+        if(e.getKeyCode() == KeyEvent.VK_P) pause.toggle(pressed);
+        if(e.getKeyCode() == KeyEvent.VK_ENTER) enter.toggle(pressed);
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) esc.toggle(pressed);
     }
 
     @Override

@@ -12,7 +12,7 @@ public class J2dMenuState extends MenuState {
 
     private Background bg;
 
-    private Color titleColor, selectColor;
+    private Color titleColor;
     private Font titleFont, font, selectFont;
 
     public J2dMenuState(J2dGraph gr, GameStateManager gsm) {
@@ -25,7 +25,7 @@ public class J2dMenuState extends MenuState {
 
             titleColor = new Color(0, 255, 180);
             titleFont = new Font("Century Gothic", Font.PLAIN, 60);
-            
+
             font = new Font("Arial", Font.PLAIN, 30);
             selectFont = new Font("Arial", Font.BOLD, 30);
 

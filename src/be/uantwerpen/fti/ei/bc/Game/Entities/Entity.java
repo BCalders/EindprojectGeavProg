@@ -9,11 +9,10 @@ public abstract class Entity {
     protected double dx, dy;
 
     //dimensions
-    protected int width, height;
+    protected double width, height;
 
     //collision box
-    protected int cWidth, cHeight;
-    protected boolean isTopLeft, isTopRight, isBottomLeft, isBottomRight;
+    protected double cWidth, cHeight;
 
     //movement
     protected boolean left, right, up, down;
@@ -33,19 +32,27 @@ public abstract class Entity {
         return y;
     }
 
-    public int getWidth() {
+    public double getDx() {
+        return dx;
+    }
+
+    public double getDy() {
+        return dy;
+    }
+
+    public double getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public int getcWidth() {
+    public double getcWidth() {
         return cWidth;
     }
 
-    public int getcHeight() {
+    public double getcHeight() {
         return cHeight;
     }
 
@@ -76,7 +83,7 @@ public abstract class Entity {
     }
 
     public Rectangle getRectangle() {
-        return new Rectangle((int) x + cWidth, (int) y + cHeight, cWidth, cHeight);
+        return new Rectangle((int) x + (int) cWidth, (int) y + (int) cHeight, (int)cWidth, (int)cHeight);
     }
 
     public boolean intersects(Entity other) {

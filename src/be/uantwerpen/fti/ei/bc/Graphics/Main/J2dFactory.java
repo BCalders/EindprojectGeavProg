@@ -1,11 +1,13 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Main;
 
+import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.MenuState;
 import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 import be.uantwerpen.fti.ei.bc.Game.Main.GraphicsClass;
+import be.uantwerpen.fti.ei.bc.Graphics.Entities.J2dPlayerShip;
 import be.uantwerpen.fti.ei.bc.Graphics.GameState.J2dLevelState;
 import be.uantwerpen.fti.ei.bc.Graphics.GameState.J2dMenuState;
 
@@ -33,8 +35,11 @@ public class J2dFactory extends AFactory {
 
     @Override
     public LevelState createLevelState(GameStateManager gsm) {
-        return new J2dLevelState(graph, gsm);
+        return new J2dLevelState(graph, gsm, this);
     }
 
-
+    @Override
+    public PlayerShip createPlayerShip() {
+        return new J2dPlayerShip(graph);
+    }
 }

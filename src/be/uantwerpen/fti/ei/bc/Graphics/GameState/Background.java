@@ -14,7 +14,8 @@ public class Background {
 
     private BufferedImage image;
 
-    private double x, y, dx, dy;
+    private static double x, y;
+    private double dx, dy;
 
     public Background(J2dGraph gr, String s){
         this.gr = gr;
@@ -23,11 +24,6 @@ public class Background {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void setPos(double x, double y){
-        this.x = x % J2dGraph.WIDTH;
-        this.y = y % J2dGraph.HEIGHT;
     }
 
     public void setVector(double dx, double dy){

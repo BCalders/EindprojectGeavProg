@@ -1,5 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Game.Main;
 
+import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.MenuState;
@@ -17,4 +18,6 @@ public abstract class AFactory {
     public abstract KeyHandler createKeyHandler();
 
     public abstract LevelState createLevelState(GameStateManager gsm);
+
+    public abstract PlayerShip createPlayerShip();
 }

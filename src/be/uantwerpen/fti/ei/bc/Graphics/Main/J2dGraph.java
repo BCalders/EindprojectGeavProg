@@ -17,7 +17,7 @@ public class J2dGraph extends GraphicsClass {
     private final JPanel panel;
 
     public J2dGraph() {
-        frame = new JFrame("Project");
+        frame = new JFrame("Initializing");
         panel = new JPanel(true) {
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -36,6 +36,31 @@ public class J2dGraph extends GraphicsClass {
 
         image = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_4BYTE_ABGR_PRE);
         g2d = image.createGraphics();
+    }
+
+    @Override
+    public double calculateX(double x) {
+        return ((x + 30) / 60) * WIDTH;
+    }
+
+    @Override
+    public double calculateY(double y) {
+        return ((y + 40) / 80) * HEIGHT;
+    }
+
+    @Override
+    public double reformX(double x) {
+        return (x / 60) * WIDTH;
+    }
+
+    @Override
+    public double reformY(double y) {
+        return (y / 80) * HEIGHT;
+    }
+
+    @Override
+    public void setFps(int v) {
+        frame.setTitle("Space Invaders 4-Geav Prog Fps: " + v);
     }
 
     public Graphics2D getG2d() {
