@@ -29,7 +29,11 @@ public class J2dPlayerShip extends PlayerShip {
         int height2 = (int) graph.reformY(height);
 
         //Test generation
-        g2d.setColor(Color.GREEN);
+        if (isShooting) {
+            g2d.setColor(Color.RED);
+            isShooting = false;
+        } else
+            g2d.setColor(Color.GREEN);
         g2d.fillRect(xCoord, yCoord, width2, height2); // to show game didnt crash
 
     }

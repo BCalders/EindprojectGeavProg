@@ -2,6 +2,8 @@ package be.uantwerpen.fti.ei.bc.Game.Entities;
 
 public abstract class PlayerShip extends Entity {
 
+    protected boolean isShooting = false;
+
     public PlayerShip() {
         this.width = 2;
         this.height = 2;
@@ -31,5 +33,6 @@ public abstract class PlayerShip extends Entity {
 
     public void shoot(){
         System.out.println("PLAYER SHOOT");
+        isShooting = true;
     }
 }
