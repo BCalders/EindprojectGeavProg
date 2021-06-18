@@ -1,16 +1,15 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Entities;
 
-import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
+import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
 
-public class J2dPlayerShip extends PlayerShip {
+public class J2dEnemyShip extends EnemyShip {
 
     private final J2dGraph graph;
 
-    public J2dPlayerShip(J2dGraph graph) {
-        super();
+    public J2dEnemyShip(J2dGraph graph) {
         this.graph = graph;
     }
 
@@ -29,12 +28,9 @@ public class J2dPlayerShip extends PlayerShip {
         int height2 = (int) graph.reformY(height);
 
         //Test generation
-        if (isShooting) {
-            g2d.setColor(Color.RED);
-            isShooting = false;
-        } else
-            g2d.setColor(Color.GREEN);
+        g2d.setColor(Color.YELLOW);
         g2d.fillRect(xCoord, yCoord, width2, height2);
+
 
     }
 }

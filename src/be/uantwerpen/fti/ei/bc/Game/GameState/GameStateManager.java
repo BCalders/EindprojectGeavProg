@@ -11,7 +11,7 @@ public class GameStateManager {
     private final ArrayList<GameState> gameStates;
     private int currentState;
 
-    public static final int MENUSTATE = 0, LEVELSTATE = 1;
+    public static final int MENUSTATE = 0, LEVELSTATE = 1, PAUSESTATE = 2, SCORESTATE = 3, GAMEOVERSTATE = 4;
 
 
     public GameStateManager(AFactory f) {
@@ -45,5 +45,12 @@ public class GameStateManager {
         if(key.esc.isDown){
             exitGame("Player pressed ESC!");
         }
+        if(key.pause.isClicked()){
+            pauseInput();
+        }
+    }
+
+    private void pauseInput() {
+        System.out.println("PAUSE KEY WAS PRESSED");
     }
 }

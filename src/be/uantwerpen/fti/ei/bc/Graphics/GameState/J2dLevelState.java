@@ -41,7 +41,12 @@ public class J2dLevelState extends LevelState {
         //draw PlayerShip
         ps.draw();
 
+        for(int i = 0; i < 10; i++){
+            tempESs.get(i).draw();
+        }
+
+        //Showing Level is running
         g2d.setColor(Color.RED);
-        g2d.fillRect(550, 25, 25, 25); // to show game didnt crash
+        g2d.fillRect(590, 0, 10, 10);
     }
 }

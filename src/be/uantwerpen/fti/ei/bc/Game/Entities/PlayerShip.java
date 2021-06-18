@@ -3,6 +3,7 @@ package be.uantwerpen.fti.ei.bc.Game.Entities;
 public abstract class PlayerShip extends Entity {
 
     protected boolean isShooting = false;
+    protected int shootingCooldown;
 
     public PlayerShip() {
         this.width = 2;

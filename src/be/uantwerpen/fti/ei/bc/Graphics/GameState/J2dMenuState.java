@@ -21,7 +21,7 @@ public class J2dMenuState extends MenuState {
 
         try {
             bg = new Background(gr, "/Backgrounds/background.png");
-            bg.setVector(0, 0.1);
+            bg.setVector(0, 0.2);
 
             titleColor = new Color(0, 255, 180);
             titleFont = new Font("Century Gothic", Font.PLAIN, 60);
