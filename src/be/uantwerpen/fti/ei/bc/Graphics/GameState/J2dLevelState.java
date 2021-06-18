@@ -28,7 +28,7 @@ public class J2dLevelState extends LevelState {
     public void update() {
         super.update();
         bg.update();
-        p.update();;
+        ps.update();;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class J2dLevelState extends LevelState {
         bg.draw();
 
         //draw PlayerShip
-        p.draw();
+        ps.draw();
 
         g2d.setColor(Color.RED);
         g2d.fillRect(550, 25, 25, 25); // to show game didnt crash

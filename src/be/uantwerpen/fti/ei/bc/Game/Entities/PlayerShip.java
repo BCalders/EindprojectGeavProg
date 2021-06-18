@@ -7,6 +7,7 @@ public abstract class PlayerShip extends Entity {
         this.height = 2;
         cWidth = width;
         cHeight = height;
+        speed = 0.2;
     }
 
     public void update() {
@@ -28,4 +29,7 @@ public abstract class PlayerShip extends Entity {
 
     public abstract void draw();
 
+    public void shoot(){
+        System.out.println("PLAYER SHOOT");
+    }
 }

@@ -11,8 +11,9 @@ public class KeyHandler implements KeyListener {
     public static ArrayList<Key> keys = new ArrayList<>();
 
     public class Key {
-        public int presses, absorbs;
-        public boolean isDown, isClicked;
+        private int presses, absorbs;
+        public boolean isDown;
+        private boolean isClicked;
 
         public Key() {
             keys.add(this);
@@ -27,12 +28,11 @@ public class KeyHandler implements KeyListener {
             }
         }
 
-        public boolean isClicked(){
-            if (isClicked){
+        public boolean isClicked() {
+            if (isClicked) {
                 isClicked = false;
                 return true;
-            }
-            else
+            } else
                 return false;
         }
 
@@ -45,7 +45,7 @@ public class KeyHandler implements KeyListener {
             }
         }
     }
-    
+
     public Key up = new Key();
     public Key down = new Key();
     public Key left = new Key();
@@ -71,15 +71,15 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-    public void toggle(KeyEvent e, boolean pressed){
-        if(e.getKeyCode() == KeyEvent.VK_UP) up.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_DOWN) down.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_LEFT) left.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT) right.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_SPACE) attack.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_P) pause.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_ENTER) enter.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) esc.toggle(pressed);
+    public void toggle(KeyEvent e, boolean pressed) {
+        if (e.getKeyCode() == KeyEvent.VK_UP) up.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) down.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) left.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) right.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) attack.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_P) pause.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) enter.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) esc.toggle(pressed);
     }
 
     @Override

@@ -14,11 +14,7 @@ public abstract class Entity {
     //collision box
     protected double cWidth, cHeight;
 
-    //movement
-    protected boolean left, right, up, down;
-
-    //movement attributes
-    protected double moveSpeed, maxSpeed, stopSpeed;
+    protected double speed;
 
     public Entity() {
 
@@ -56,6 +52,10 @@ public abstract class Entity {
         return cHeight;
     }
 
+    public double getSpeed() {
+        return speed;
+    }
+
     public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;
@@ -66,24 +66,8 @@ public abstract class Entity {
         this.dy = dy;
     }
 
-    public void setLeft(boolean left) {
-        this.left = left;
-    }
-
-    public void setRight(boolean right) {
-        this.right = right;
-    }
-
-    public void setUp(boolean up) {
-        this.up = up;
-    }
-
-    public void setDown(boolean down) {
-        this.down = down;
-    }
-
     public Rectangle getRectangle() {
-        return new Rectangle((int) x + (int) cWidth, (int) y + (int) cHeight, (int)cWidth, (int)cHeight);
+        return new Rectangle((int) x + (int) cWidth, (int) y + (int) cHeight, (int) cWidth, (int) cHeight);
     }
 
     public boolean intersects(Entity other) {
