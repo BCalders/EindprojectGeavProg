@@ -1,5 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Main;
 
+import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
 import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
@@ -8,6 +9,7 @@ import be.uantwerpen.fti.ei.bc.Game.GameState.MenuState;
 import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 import be.uantwerpen.fti.ei.bc.Game.Main.GraphicsClass;
+import be.uantwerpen.fti.ei.bc.Graphics.Entities.J2dBullet;
 import be.uantwerpen.fti.ei.bc.Graphics.Entities.J2dEnemyShip;
 import be.uantwerpen.fti.ei.bc.Graphics.Entities.J2dPlayerShip;
 import be.uantwerpen.fti.ei.bc.Graphics.GameState.J2dLevelState;
@@ -48,5 +50,10 @@ public class J2dFactory extends AFactory {
     @Override
     public EnemyShip createEnemyShip() {
         return new J2dEnemyShip(graph);
+    }
+
+    @Override
+    public Bullet createBullet() {
+        return new J2dBullet(graph);
     }
 }

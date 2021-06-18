@@ -1,15 +1,15 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Entities;
 
-import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
+import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
 
-public class J2dEnemyShip extends EnemyShip {
+public class J2dBullet extends Bullet {
 
     private final J2dGraph graph;
 
-    public J2dEnemyShip(J2dGraph graph) {
+    public J2dBullet(J2dGraph graph){
         super();
         this.graph = graph;
     }
@@ -29,7 +29,7 @@ public class J2dEnemyShip extends EnemyShip {
         int height2 = (int) graph.reformY(height);
 
         //Test generation
-        g2d.setColor(Color.YELLOW);
-        if(isAlive) g2d.fillRect(xCoord, yCoord, width2, height2);
+        g2d.setColor(Color.CYAN);
+        g2d.fillRect(xCoord, yCoord, width2, height2);
     }
 }
