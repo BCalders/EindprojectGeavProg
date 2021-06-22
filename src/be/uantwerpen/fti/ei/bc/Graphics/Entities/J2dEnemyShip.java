@@ -35,7 +35,7 @@ public class J2dEnemyShip extends EnemyShip {
 
         //Test generation
         g2d.setColor(Color.BLUE);
-        if(isAlive) g2d.fillRect(xCoord, yCoord, width2, height2);
+        g2d.fillRect(xCoord, yCoord, width2, height2);
 
         //draw collision box
         g2d.setColor(Color.YELLOW);

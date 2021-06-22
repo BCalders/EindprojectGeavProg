@@ -37,7 +37,8 @@ public class J2dPlayerShip extends PlayerShip {
 
         if(isFlinching) {
             long elapsed = (System.currentTimeMillis() - flinchtimer)/1000;
-            if(elapsed / 100 % 2 == 0){
+            if(elapsed / 50 % 2 == 0){
+
                 return;
             }
         }

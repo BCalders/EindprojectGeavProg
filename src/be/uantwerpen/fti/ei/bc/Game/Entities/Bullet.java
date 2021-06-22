@@ -24,6 +24,10 @@ public abstract class Bullet extends Entity {
         return remove;
     }
 
+    public boolean isEnemyBullet(){
+        return isEnemyBullet;
+    }
+
     public void setHit() {
         hit = true;
         remove = true;

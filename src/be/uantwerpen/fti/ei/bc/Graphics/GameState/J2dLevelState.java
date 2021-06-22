@@ -48,7 +48,7 @@ public class J2dLevelState extends LevelState {
         ps.draw();
 
         //draw enemy ships
-        for (EnemyShip i : tempESs) {
+        for (EnemyShip i : enemies) {
             i.draw();
         }
 
