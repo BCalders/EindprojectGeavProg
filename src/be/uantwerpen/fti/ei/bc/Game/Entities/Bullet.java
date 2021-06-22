@@ -1,10 +1,15 @@
 package be.uantwerpen.fti.ei.bc.Game.Entities;
 
+import java.awt.image.BufferedImage;
+
 public abstract class Bullet extends Entity{
 
+    private boolean isEnemyBullet, hit, remove;
+    private BufferedImage sprite, hitSprite;
+
     public Bullet(){
-        this.width = 0.5;
-        this.height = 1;
+        width = 0.5;
+        height = 1;
         cHeight = height;
         cWidth = width;
     }

@@ -1,5 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Graphics.GameState;
 
+import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
@@ -15,6 +16,13 @@ public class J2dLevelState extends LevelState {
     public J2dLevelState(J2dGraph graph, GameStateManager gsm, AFactory f) {
         super(gsm, f);
         this.gr = graph;
+
+//        init();
+    }
+
+    @Override
+    public void init() {
+        super.init();
 
         try {
             bg = new Background(gr, "/Backgrounds/background.png");
@@ -42,15 +50,15 @@ public class J2dLevelState extends LevelState {
         ps.draw();
 
         //draw enemy ships
-        for(int i = 0; i < 10; i++){
-            tempESs.get(i).draw();
+        for(EnemyShip i : tempESs){
+            i.draw();
         }
 
         //draw Bullets
         tempBullet.draw();
 
         //Showing Level is running
-        g2d.setColor(Color.RED);
+        g2d.setColor(Color.ORANGE);
         g2d.fillRect(590, 0, 10, 10);
     }
 }

@@ -1,6 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Game.GameState;
 
-import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Graphics.KeyHandler.KeyHandler;
 
 public abstract class MenuState extends GameState{
 
@@ -24,11 +24,10 @@ public abstract class MenuState extends GameState{
     }
 
     public MenuState(GameStateManager gsm){
-        this.gsm = gsm;
+        super(gsm);
     }
 
     public void init(){
-
     }
 
     public abstract void draw();

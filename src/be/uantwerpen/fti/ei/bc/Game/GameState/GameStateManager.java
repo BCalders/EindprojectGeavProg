@@ -2,7 +2,7 @@ package be.uantwerpen.fti.ei.bc.Game.GameState;
 
 
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
-import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Graphics.KeyHandler.KeyHandler;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,8 @@ public class GameStateManager {
     private final ArrayList<GameState> gameStates;
     private int currentState;
 
-    public static final int MENUSTATE = 0, LEVELSTATE = 1, PAUSESTATE = 2, SCORESTATE = 3, GAMEOVERSTATE = 4;
+    public static final int MENUSTATE = 0, LEVELSTATE = 1, WINSTATE = 2, GAMEOVERSTATE = 3, PAUSESTATE = 4, HIGHSCORE = 5;
+    protected int[] scores;
 
 
     public GameStateManager(AFactory f) {
@@ -20,6 +21,13 @@ public class GameStateManager {
         currentState = MENUSTATE;
         gameStates.add(f.createMenuState(this));
         gameStates.add(f.createLevelState(this));
+        gameStates.add(f.createWinstate(this));
+
+        gameStates.get(currentState).init();
+    }
+
+    public int[] getScores(){
+        return scores;
     }
 
     public void exitGame(String exitReason){
@@ -30,6 +38,10 @@ public class GameStateManager {
     public void setState(int state) {
         currentState = state;
         gameStates.get(currentState).init();
+    }
+
+    public void setScores(int score, int lives, int time){
+        scores = new int[]{score, lives, time};
     }
 
     public void update() {

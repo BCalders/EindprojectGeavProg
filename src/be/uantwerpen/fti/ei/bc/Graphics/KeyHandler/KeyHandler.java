@@ -1,4 +1,4 @@
-package be.uantwerpen.fti.ei.bc.Game.KeyHandler;
+package be.uantwerpen.fti.ei.bc.Graphics.KeyHandler;
 
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
@@ -10,7 +10,7 @@ public class KeyHandler implements KeyListener {
 
     public static ArrayList<Key> keys = new ArrayList<>();
 
-    public class Key {
+    public static class Key {
         private int presses, absorbs;
         public boolean isDown;
         private boolean isClicked;
@@ -54,20 +54,21 @@ public class KeyHandler implements KeyListener {
     public Key pause = new Key();
     public Key enter = new Key();
     public Key esc = new Key();
+    public Key shift = new Key();
 
     public KeyHandler(J2dGraph gr) {
         gr.getFrame().addKeyListener(this);
     }
 
     public void releaseAll() {
-        for (int i = 0; i < keys.size(); i++) {
-            keys.get(i).isDown = false;
+        for (Key i : keys) {
+            i.isDown = false;
         }
     }
 
     public void tick() {
-        for (int i = 0; i < keys.size(); i++) {
-            keys.get(i).tick();
+        for (Key i : keys) {
+            i.tick();
         }
     }
 
@@ -80,6 +81,7 @@ public class KeyHandler implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_P) pause.toggle(pressed);
         if (e.getKeyCode() == KeyEvent.VK_ENTER) enter.toggle(pressed);
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) esc.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_SHIFT) shift.toggle(pressed);
     }
 
     @Override

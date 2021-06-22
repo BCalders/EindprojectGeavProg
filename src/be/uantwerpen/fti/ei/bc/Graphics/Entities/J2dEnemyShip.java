@@ -29,7 +29,7 @@ public class J2dEnemyShip extends EnemyShip {
         int height2 = (int) graph.reformY(height);
 
         //Test generation
-        g2d.setColor(Color.YELLOW);
+        g2d.setColor(Color.BLUE);
         if(isAlive) g2d.fillRect(xCoord, yCoord, width2, height2);
     }
 }

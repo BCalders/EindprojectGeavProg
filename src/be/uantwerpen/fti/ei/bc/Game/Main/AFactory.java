@@ -3,10 +3,11 @@ package be.uantwerpen.fti.ei.bc.Game.Main;
 import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
 import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
+import be.uantwerpen.fti.ei.bc.Game.GameState.GameState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.MenuState;
-import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Graphics.KeyHandler.KeyHandler;
 
 public abstract class AFactory {
 
@@ -26,4 +27,6 @@ public abstract class AFactory {
     public abstract EnemyShip createEnemyShip();
 
     public abstract Bullet createBullet();
+
+    public abstract GameState createWinstate(GameStateManager gsm);
 }

@@ -29,7 +29,7 @@ public class J2dBullet extends Bullet {
         int height2 = (int) graph.reformY(height);
 
         //Test generation
-        g2d.setColor(Color.CYAN);
+        g2d.setColor(Color.RED);
         g2d.fillRect(xCoord, yCoord, width2, height2);
     }
 }

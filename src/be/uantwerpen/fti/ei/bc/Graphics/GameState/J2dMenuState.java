@@ -19,6 +19,13 @@ public class J2dMenuState extends MenuState {
         super(gsm);
         this.gr = gr;
 
+//        init();
+    }
+
+    @Override
+    public void init() {
+        super.init();
+
         try {
             bg = new Background(gr, "/Backgrounds/background.png");
             bg.setVector(0, 0.2);

@@ -1,7 +1,7 @@
 package be.uantwerpen.fti.ei.bc.Game.Main;
 
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
-import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Graphics.KeyHandler.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Stopwatch.Stopwatch;
 
 import static java.lang.Math.ceil;
