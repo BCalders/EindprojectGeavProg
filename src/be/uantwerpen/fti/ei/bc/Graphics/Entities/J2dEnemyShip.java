@@ -28,8 +28,17 @@ public class J2dEnemyShip extends EnemyShip {
         int width2 = (int) graph.reformX(width);
         int height2 = (int) graph.reformY(height);
 
+        int xCCoord = (int) graph.calculateX(getX() + (width - cWidth)/2);
+        int yCCoord = (int) graph.calculateY(getY() - (height - cHeight)/2);
+        int cwidth2 = (int) graph.reformX(cWidth);
+        int cheight2 = (int) graph.reformY(cHeight);
+
         //Test generation
         g2d.setColor(Color.BLUE);
-        if(isAlive) g2d.fillRect(xCoord, yCoord, width2, height2);
+        g2d.fillRect(xCoord, yCoord, width2, height2);
+
+        //draw collision box
+//        g2d.setColor(Color.YELLOW);
+//        g2d.fillRect(xCCoord, yCCoord, cwidth2, cheight2);
     }
 }

@@ -85,6 +85,12 @@ public class J2dWinState extends WinState {
             g2d.drawString(scoreNames[i], titleXLocation, scoreYLocation);
             g2d.drawString(getScoreCalc()[i], scoreXLocation, scoreYLocation);
         }
+        g2d.drawLine(
+                titleXLocation,
+                J2dGraph.HEIGHT / 2 + ((2 - 1) * scoreSpacing) + 10,
+                scoreXLocation + g2d.getFontMetrics(g2d.getFont()).stringWidth(getScoreCalc()[1]),
+                J2dGraph.HEIGHT / 2 + ((2 - 1) * scoreSpacing) + 10
+        );
 
         //draw return
         if (linesVisible) {

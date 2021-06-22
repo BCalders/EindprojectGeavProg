@@ -16,9 +16,9 @@ public abstract class GameOverState extends GameState {
         int lives = scores[1];
         int time = scores[2];
 
-        if (lives <= 0) reason += "ran out of Lives";
-        else if (time <= 0) reason += "ran out of Time";
-        else reason = "_ERROR: Unknown reason_";
+        if (lives <= 0) reason = "ran out of Lives";
+        else if (time <= 0) reason = "ran out of Time";
+        else reason = "Aliens reached destination";
     }
 
     @Override

@@ -27,7 +27,7 @@ public abstract class WinState extends GameState {
         String[] scoreCalc = new String[]{
                 score + "",                 // om er een string van te maken
                 lives + " x 100",
-                time + " x 10",
+                (100 - time) + " x 10",
                 totalScore + ""
         };
         return scoreCalc;

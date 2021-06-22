@@ -1,5 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Graphics.GameState;
 
+import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
@@ -7,6 +8,7 @@ import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class J2dLevelState extends LevelState {
 
@@ -47,12 +49,14 @@ public class J2dLevelState extends LevelState {
         ps.draw();
 
         //draw enemy ships
-        for (EnemyShip i : tempESs) {
+        for (EnemyShip i : enemies) {
             i.draw();
         }
 
         //draw Bullets
-        tempBullet.draw();
+        for (Bullet i : bullets) {
+            i.draw();
+        }
 
         //draw HUD
         int fontSize = 25;
@@ -74,7 +78,7 @@ public class J2dLevelState extends LevelState {
         g2d.setColor(Color.GREEN);
 
         for (int i = 0; i < lives; i++) {
-            g2d.fillRect(J2dGraph.WIDTH  - ((int) gr.reformX(ps.getcWidth()) + 10) * (3 - i), 7, (int) gr.reformX(ps.getcWidth()), (int) gr.reformY(ps.getcHeight()));
+            g2d.fillRect(J2dGraph.WIDTH - ((int) gr.reformX(ps.getcWidth()) + 10) * (3 - i), 7, (int) gr.reformX(ps.getcWidth()), (int) gr.reformY(ps.getcHeight()));
         }
 
     }
