@@ -3,10 +3,9 @@ package be.uantwerpen.fti.ei.bc.Game.GameState;
 import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
 import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
-import be.uantwerpen.fti.ei.bc.Graphics.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public abstract class LevelState extends GameState {
@@ -46,10 +45,19 @@ public abstract class LevelState extends GameState {
 
     }
 
+    private void lose(){
+        gsm.setScores(score, lives, time);
+        gsm.setState(GameStateManager.GAMEOVERSTATE);
+    }
+
     private void win(){
-        System.out.println("time: " + time);
         gsm.setScores(score, lives, time);
         gsm.setState(GameStateManager.WINSTATE);
+    }
+
+    private void kill(int i) {
+        score += 500;
+        tempESs.get(i).kill();
     }
 
     @Override
@@ -61,13 +69,16 @@ public abstract class LevelState extends GameState {
         ps.update();
 
         //end game if dead or time runs out
-        if(time == 0 || lives == 0) gsm.setState(GameStateManager.GAMEOVERSTATE);
+        if(time <= 0 || lives <= 0) {
+            System.out.println("Time: " + time +  " Lives: " + lives);
+            lose();
+        }
 
     }
 
     public abstract void draw();
 
-    public void shoot() {
+    public void playerShoot() {
         ps.shoot();
     }
 
@@ -83,15 +94,16 @@ public abstract class LevelState extends GameState {
             ps.setVector(0, 0);
         }
         if (key.attack.isClicked()) {
-            shoot();
+            playerShoot();
+            lives--;                // ----------------- testing
         }
         if (key.pause.isClicked()){
-            tempESs.get(5).kill();
+            kill(5);             // ------------------ testing
 //            tempESs.remove(5);
         }
         if(key.enter.isClicked()){
-            if(!key.shift.isDown) win();
-            else gsm.setState(GameStateManager.GAMEOVERSTATE);
+            if(key.control.isDown) win();
+            if(key.shift.isDown) lose();
         }
     }
 }

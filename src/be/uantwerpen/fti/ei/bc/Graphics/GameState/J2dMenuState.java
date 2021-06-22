@@ -12,19 +12,23 @@ public class J2dMenuState extends MenuState {
 
     private Background bg;
 
-    private Color titleColor;
+    private Color titleColor, selectColor;
     private Font titleFont, font, selectFont;
+
+    private boolean isBlinking;
+    private int blinkingCounter;
 
     public J2dMenuState(J2dGraph gr, GameStateManager gsm) {
         super(gsm);
         this.gr = gr;
-
-//        init();
     }
 
     @Override
     public void init() {
         super.init();
+
+        isBlinking = true;
+        blinkingCounter = 0;
 
         try {
             bg = new Background(gr, "/Backgrounds/background.png");
@@ -35,6 +39,7 @@ public class J2dMenuState extends MenuState {
 
             font = new Font("Arial", Font.PLAIN, 30);
             selectFont = new Font("Arial", Font.BOLD, 30);
+            selectColor = titleColor.darker().darker();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,6 +50,13 @@ public class J2dMenuState extends MenuState {
     public void update() {
         super.update();
         bg.update();
+
+        blinkingCounter++;
+
+        if (blinkingCounter > 30) {
+            isBlinking = !isBlinking;
+            blinkingCounter = 0;
+        }
     }
 
     @Override
@@ -59,8 +71,8 @@ public class J2dMenuState extends MenuState {
         //draw Title
         g2d.setColor(titleColor);
         g2d.setFont(titleFont);
-        titleXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(title))/2;
-        titleYLocation = J2dGraph.HEIGHT/4;
+        titleXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(title)) / 2;
+        titleYLocation = J2dGraph.HEIGHT / 4;
         g2d.drawString(title, titleXLocation, titleYLocation);
 
         //draw menu
@@ -69,12 +81,15 @@ public class J2dMenuState extends MenuState {
             int choiceYLocation = J2dGraph.HEIGHT / 2 + ((i - 1) * choiceSpacing);
             if (i == getCurrentChoice()) {
                 g2d.setFont(selectFont);
-                g2d.setColor(titleColor.darker().darker());
+
+                if (isBlinking) g2d.setColor(titleColor);
+                else g2d.setColor(selectColor);
+
                 g2d.setStroke(new BasicStroke(2));
-                g2d.drawLine(titleXLocation, choiceYLocation + 6, titleXLocation + g2d.getFontMetrics(g2d.getFont()).stringWidth(getOptions()[i]), choiceYLocation + 6);
+                g2d.fillRect(titleXLocation - 10 - 25, choiceYLocation - 23, 25, 25);                    //draw playership icon, nog aan te vullen
             } else {
                 g2d.setFont(font);
-                g2d.setColor(titleColor);
+                g2d.setColor(selectColor);
             }
             g2d.drawString(getOptions()[i], titleXLocation, choiceYLocation);
         }

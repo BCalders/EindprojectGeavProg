@@ -16,7 +16,10 @@ public class J2dGameOverState extends GameOverState {
     private Color titleColor;
     private Font titleFont, font;
 
-    public J2dGameOverState(J2dGraph graph, GameStateManager gsm){
+    private boolean linesVisible;
+    private int linesVisibleCount;
+
+    public J2dGameOverState(J2dGraph graph, GameStateManager gsm) {
         super(gsm);
         this.gr = graph;
     }
@@ -24,6 +27,9 @@ public class J2dGameOverState extends GameOverState {
     @Override
     public void init() {
         super.init();
+
+        linesVisible = true;
+        linesVisibleCount = 0;
 
         try {
             bg = new Background(gr, "/Backgrounds/background.png");
@@ -43,6 +49,13 @@ public class J2dGameOverState extends GameOverState {
     public void update() {
         super.update();
         bg.update();
+
+        linesVisibleCount++;
+
+        if (linesVisibleCount > 30) {
+            linesVisible = !linesVisible;
+            linesVisibleCount = 0;
+        }
     }
 
     @Override
@@ -63,10 +76,24 @@ public class J2dGameOverState extends GameOverState {
 
         g2d.setFont(font);
 
-        String returnString = "-- Press ENTER to continue --";
-        int returnXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString)) / 2;
-        int returnYLocation = (J2dGraph.HEIGHT / 4) * 3;
-        g2d.drawString(returnString, returnXLocation, returnYLocation);
-        g2d.drawLine(returnXLocation, returnYLocation + 6, returnXLocation + g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString), returnYLocation + 6);
+        //Draw Loss reason
+        String reasonString = "Player lost because they ";
+        int reasonXlocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(reasonString)) / 2;
+        int reason2Xlocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(reason)) / 2;
+        g2d.drawString(reasonString, reasonXlocation, titleYLocation + 60);
+        g2d.drawString(reason, reason2Xlocation, titleYLocation + 90);
+
+        //Draw return
+        if (linesVisible) {
+            String returnString = "-- Press ENTER to continue --";
+            int returnXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString)) / 2;
+            int returnYLocation = (J2dGraph.HEIGHT / 4) * 3;
+            g2d.drawString(returnString, returnXLocation, returnYLocation);
+        } else {
+            String returnString = "Press ENTER to continue";
+            int returnXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString)) / 2;
+            int returnYLocation = (J2dGraph.HEIGHT / 4) * 3;
+            g2d.drawString(returnString, returnXLocation, returnYLocation);
+        }
     }
 }

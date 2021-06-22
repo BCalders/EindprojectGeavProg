@@ -69,10 +69,12 @@ public class J2dLevelState extends LevelState {
 
         g2d.drawString(hudStrings[0], 5, fontSize);
         g2d.drawString(hudStrings[1], J2dGraph.WIDTH / 2 - g2d.getFontMetrics(g2d.getFont()).stringWidth(hudStrings[1]) / 2, fontSize);
-        g2d.drawString(hudStrings[2], J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(hudStrings[2]) - 100, fontSize);
+        g2d.drawString(hudStrings[2], J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(hudStrings[2]) - ((int) gr.reformX(ps.getcWidth()) + 10) * 3, fontSize);
 
-        for (int i = 0; i < 3; i++){
-            g2d.dra
+        g2d.setColor(Color.GREEN);
+
+        for (int i = 0; i < lives; i++) {
+            g2d.fillRect(J2dGraph.WIDTH  - ((int) gr.reformX(ps.getcWidth()) + 10) * (3 - i), 7, (int) gr.reformX(ps.getcWidth()), (int) gr.reformY(ps.getcHeight()));
         }
 
     }

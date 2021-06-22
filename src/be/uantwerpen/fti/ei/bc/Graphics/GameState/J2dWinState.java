@@ -15,6 +15,9 @@ public class J2dWinState extends WinState {
     private Color titleColor;
     private Font titleFont, font;
 
+    private boolean linesVisible;
+    private int linesVisibleCount;
+
     public J2dWinState(J2dGraph graph, GameStateManager gsm) {
         super(gsm);
         this.gr = graph;
@@ -23,6 +26,9 @@ public class J2dWinState extends WinState {
     @Override
     public void init() {
         super.init();
+
+        linesVisible = true;
+        linesVisibleCount = 0;
 
         try {
             bg = new Background(gr, "/Backgrounds/background.png");
@@ -42,13 +48,20 @@ public class J2dWinState extends WinState {
     public void update() {
         super.update();
         bg.update();
+
+        linesVisibleCount++;
+
+        if (linesVisibleCount > 30) {
+            linesVisible = !linesVisible;
+            linesVisibleCount = 0;
+        }
     }
 
     @Override
     public void draw() {
         Graphics2D g2d = gr.getG2d();
         int titleXLocation, titleYLocation;
-        String title = "You Win";
+        String title = "YOU WIN!";
 
         //draw Background
         bg.draw();
@@ -72,12 +85,19 @@ public class J2dWinState extends WinState {
             g2d.drawString(scoreNames[i], titleXLocation, scoreYLocation);
             g2d.drawString(getScoreCalc()[i], scoreXLocation, scoreYLocation);
         }
+
         //draw return
-        String returnString = "-- Press ENTER to continue --";
-        int returnXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString)) / 2;
-        int returnYLocation = (J2dGraph.HEIGHT / 4) * 3;
-        g2d.drawString(returnString, returnXLocation, returnYLocation);
-        g2d.drawLine(returnXLocation, returnYLocation + 6, returnXLocation + g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString), returnYLocation + 6);
+        if (linesVisible) {
+            String returnString = "-- Press ENTER to continue --";
+            int returnXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString)) / 2;
+            int returnYLocation = (J2dGraph.HEIGHT / 4) * 3;
+            g2d.drawString(returnString, returnXLocation, returnYLocation);
+        } else {
+            String returnString = "Press ENTER to continue";
+            int returnXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString)) / 2;
+            int returnYLocation = (J2dGraph.HEIGHT / 4) * 3;
+            g2d.drawString(returnString, returnXLocation, returnYLocation);
+        }
 
     }
 }

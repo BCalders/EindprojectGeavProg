@@ -1,6 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Game.GameState;
 
-import be.uantwerpen.fti.ei.bc.Graphics.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
 public abstract class GameState {
 

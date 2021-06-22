@@ -1,6 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Game.GameState;
 
-import be.uantwerpen.fti.ei.bc.Graphics.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
 public abstract class WinState extends GameState {
 
@@ -20,14 +20,14 @@ public abstract class WinState extends GameState {
         score = scores[0];
         lives = scores[1];
         time = scores[2];
-        totalScore = score + (lives * 100) + ((300 - time) * 10);
+        totalScore = score + (lives * 100) + (time * 10);
     }
 
     public String[] getScoreCalc(){
         String[] scoreCalc = new String[]{
                 score + "",                 // om er een string van te maken
                 lives + " x 100",
-                300 - time + " x 10",
+                time + " x 10",
                 totalScore + ""
         };
         return scoreCalc;

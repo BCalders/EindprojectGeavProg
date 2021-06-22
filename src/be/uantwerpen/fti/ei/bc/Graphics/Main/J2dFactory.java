@@ -9,7 +9,7 @@ import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.MenuState;
 import be.uantwerpen.fti.ei.bc.Graphics.GameState.J2dGameOverState;
 import be.uantwerpen.fti.ei.bc.Graphics.GameState.J2dWinState;
-import be.uantwerpen.fti.ei.bc.Graphics.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 import be.uantwerpen.fti.ei.bc.Game.Main.GraphicsClass;
 import be.uantwerpen.fti.ei.bc.Graphics.Entities.J2dBullet;

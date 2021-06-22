@@ -1,6 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Game.GameState;
 
-import be.uantwerpen.fti.ei.bc.Graphics.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
 public abstract class MenuState extends GameState{
 
@@ -38,11 +38,10 @@ public abstract class MenuState extends GameState{
     private void select(){
         if(currentChoice == 0){
             // start
-            System.out.println("player pressed START!");
             gsm.setState(GameStateManager.LEVELSTATE);
         }
         if(currentChoice == 1) {
-            //help
+            //highscores
             System.out.println("player pressed HIGHSCORES!");
         }
         if(currentChoice == 2) {

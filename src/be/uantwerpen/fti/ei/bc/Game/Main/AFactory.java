@@ -7,7 +7,7 @@ import be.uantwerpen.fti.ei.bc.Game.GameState.GameState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.MenuState;
-import be.uantwerpen.fti.ei.bc.Graphics.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
 public abstract class AFactory {
 

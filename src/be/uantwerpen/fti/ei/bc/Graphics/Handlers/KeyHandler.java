@@ -1,4 +1,4 @@
-package be.uantwerpen.fti.ei.bc.Graphics.KeyHandler;
+package be.uantwerpen.fti.ei.bc.Graphics.Handlers;
 
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
@@ -55,6 +55,7 @@ public class KeyHandler implements KeyListener {
     public Key enter = new Key();
     public Key esc = new Key();
     public Key shift = new Key();
+    public Key control = new Key();
 
     public KeyHandler(J2dGraph gr) {
         gr.getFrame().addKeyListener(this);
@@ -82,6 +83,7 @@ public class KeyHandler implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) enter.toggle(pressed);
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) esc.toggle(pressed);
         if (e.getKeyCode() == KeyEvent.VK_SHIFT) shift.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_CONTROL) control.toggle(pressed);
     }
 
     @Override
