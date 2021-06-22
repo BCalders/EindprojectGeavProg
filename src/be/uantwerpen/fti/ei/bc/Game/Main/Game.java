@@ -44,7 +44,7 @@ public class Game{
                 e.printStackTrace();
             }
             double elapsed = (System.currentTimeMillis() - start)/1000.0;
-            graph.setFps((int) ceil(1/elapsed));
+            graph.setFps((int) ceil(1/elapsed), (int) wait);
         }
         System.exit(2);
     }

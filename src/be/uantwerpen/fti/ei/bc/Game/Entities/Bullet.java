@@ -12,6 +12,7 @@ public abstract class Bullet extends Entity{
         height = 0.1;
         cHeight = height;
         cWidth = width;
+        speed = 1;
     }
 
     public void update(){

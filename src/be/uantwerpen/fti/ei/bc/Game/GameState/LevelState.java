@@ -37,7 +37,8 @@ public abstract class LevelState extends GameState {
         tempESs = new LinkedList<>();
         for (int i = 0; i < 10; i++) {
             tempESs.add(f.createEnemyShip());
-            tempESs.get(i).setPosition(-2.9 + 0.6 * i, 3.5);
+            tempESs.get(i).setPosition(-3 + 0.4 * i, 3.5);
+//            tempESs.get(i).setDx(0.05);
         }
 
         ps.setPosition(0, -3.7);
@@ -67,6 +68,9 @@ public abstract class LevelState extends GameState {
 
         //update Entities
         ps.update();
+        for(EnemyShip i : tempESs){
+            i.update();
+        }
 
         //end game if dead or time runs out
         if(time <= 0 || lives <= 0) {

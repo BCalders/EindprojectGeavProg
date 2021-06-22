@@ -59,8 +59,8 @@ public class J2dGraph extends GraphicsClass {
     }
 
     @Override
-    public void setFps(int v) {
-        frame.setTitle("Space Invaders 4-Geav Prog Fps: " + v);
+    public void setFps(int fps, int ms) {
+        frame.setTitle("Space Invaders 4-Geav Prog Fps: " + fps + " Wait time: " + ms + " ms");
     }
 
     public Graphics2D getG2d() {

@@ -29,11 +29,18 @@ public class J2dPlayerShip extends PlayerShip {
         int height2 = (int) graph.reformY(height);
 
         int xCCoord = (int) graph.calculateX(getX() + (width - cWidth)/2);
-        int yCCoord = (int) graph.calculateY(getY() + (height - cHeight)/2);
+        int yCCoord = (int) graph.calculateY(getY() - (height - cHeight)/2);
         int cwidth2 = (int) graph.reformX(cWidth);
         int cheight2 = (int) graph.reformY(cHeight);
 
         //Test generation
+
+        if(isFlinching) {
+            long elapsed = (System.currentTimeMillis() - flinchtimer)/1000;
+            if(elapsed / 100 % 2 == 0){
+                return;
+            }
+        }
         if (isShooting) {
             g2d.setColor(Color.RED);
             isShooting = false;

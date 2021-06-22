@@ -2,6 +2,9 @@ package be.uantwerpen.fti.ei.bc.Game.Entities;
 
 public abstract class PlayerShip extends Entity {
 
+    protected boolean isFlinching = false;
+    protected long flinchtimer;
+
     protected boolean isShooting = false;
     protected int shootingCooldown;
 
