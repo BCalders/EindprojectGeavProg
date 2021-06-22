@@ -7,6 +7,7 @@ import be.uantwerpen.fti.ei.bc.Game.GameState.GameState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.MenuState;
+import be.uantwerpen.fti.ei.bc.Graphics.GameState.J2dGameOverState;
 import be.uantwerpen.fti.ei.bc.Graphics.GameState.J2dWinState;
 import be.uantwerpen.fti.ei.bc.Graphics.KeyHandler.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
@@ -62,5 +63,10 @@ public class J2dFactory extends AFactory {
     @Override
     public GameState createWinstate(GameStateManager gsm) {
         return new J2dWinState(graph, gsm);
+    }
+
+    @Override
+    public GameState createGameOverState(GameStateManager gsm) {
+        return new J2dGameOverState(graph, gsm);
     }
 }

@@ -13,7 +13,7 @@ public abstract class LevelState extends GameState {
 
     private final AFactory f;
 
-    protected int score, lives;
+    protected int score, lives, time;
     protected long levelStartTime;
 
     protected PlayerShip ps;
@@ -23,7 +23,6 @@ public abstract class LevelState extends GameState {
     public LevelState(GameStateManager gsm, AFactory f) {
         super(gsm);
         this.f = f;
-//        init();
     }
 
     @Override
@@ -48,7 +47,6 @@ public abstract class LevelState extends GameState {
     }
 
     private void win(){
-        int time = (int) Math.ceil(System.currentTimeMillis() - levelStartTime) / 1000;
         System.out.println("time: " + time);
         gsm.setScores(score, lives, time);
         gsm.setState(GameStateManager.WINSTATE);
@@ -56,6 +54,14 @@ public abstract class LevelState extends GameState {
 
     @Override
     public void update() {
+        int currentSecond = (int) Math.ceil(System.currentTimeMillis() - levelStartTime) / 1000;
+        time = 300 - currentSecond;
+
+        //update Entities
+        ps.update();
+
+        //end game if dead or time runs out
+        if(time == 0 || lives == 0) gsm.setState(GameStateManager.GAMEOVERSTATE);
 
     }
 
@@ -84,8 +90,8 @@ public abstract class LevelState extends GameState {
 //            tempESs.remove(5);
         }
         if(key.enter.isClicked()){
-            System.out.println("ENTER WAS PRESSED");
-            win();
+            if(!key.shift.isDown) win();
+            else gsm.setState(GameStateManager.GAMEOVERSTATE);
         }
     }
 }

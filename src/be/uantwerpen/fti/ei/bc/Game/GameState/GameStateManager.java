@@ -22,6 +22,7 @@ public class GameStateManager {
         gameStates.add(f.createMenuState(this));
         gameStates.add(f.createLevelState(this));
         gameStates.add(f.createWinstate(this));
+        gameStates.add(f.createGameOverState(this));
 
         gameStates.get(currentState).init();
     }

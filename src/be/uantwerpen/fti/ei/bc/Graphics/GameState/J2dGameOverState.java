@@ -1,21 +1,22 @@
 package be.uantwerpen.fti.ei.bc.Graphics.GameState;
 
+import be.uantwerpen.fti.ei.bc.Game.GameState.GameOverState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
-import be.uantwerpen.fti.ei.bc.Game.GameState.WinState;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
 
-public class J2dWinState extends WinState {
 
-    protected J2dGraph gr;
+public class J2dGameOverState extends GameOverState {
+
+    private J2dGraph gr;
 
     protected Background bg;
 
     private Color titleColor;
     private Font titleFont, font;
 
-    public J2dWinState(J2dGraph graph, GameStateManager gsm) {
+    public J2dGameOverState(J2dGraph graph, GameStateManager gsm){
         super(gsm);
         this.gr = graph;
     }
@@ -48,7 +49,7 @@ public class J2dWinState extends WinState {
     public void draw() {
         Graphics2D g2d = gr.getG2d();
         int titleXLocation, titleYLocation;
-        String title = "You Win";
+        String title = "GAME OVER";
 
         //draw Background
         bg.draw();
@@ -60,24 +61,12 @@ public class J2dWinState extends WinState {
         titleYLocation = J2dGraph.HEIGHT / 4;
         g2d.drawString(title, titleXLocation, titleYLocation);
 
-        //draw scores
-        int scoreSpacing = 50;
-        int scoreYLocation;
-        int scoreXLocation = J2dGraph.WIDTH / 2;
+        g2d.setFont(font);
 
-        for (int i = 0; i < scoreNames.length; i++) {
-            scoreYLocation = J2dGraph.HEIGHT / 2 + ((i - 1) * scoreSpacing);
-            g2d.setFont(font);
-
-            g2d.drawString(scoreNames[i], titleXLocation, scoreYLocation);
-            g2d.drawString(getScoreCalc()[i], scoreXLocation, scoreYLocation);
-        }
-        //draw return
         String returnString = "-- Press ENTER to continue --";
         int returnXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString)) / 2;
         int returnYLocation = (J2dGraph.HEIGHT / 4) * 3;
         g2d.drawString(returnString, returnXLocation, returnYLocation);
         g2d.drawLine(returnXLocation, returnYLocation + 6, returnXLocation + g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString), returnYLocation + 6);
-
     }
 }

@@ -29,4 +29,6 @@ public abstract class AFactory {
     public abstract Bullet createBullet();
 
     public abstract GameState createWinstate(GameStateManager gsm);
+
+    public abstract GameState createGameOverState(GameStateManager gsm);
 }
