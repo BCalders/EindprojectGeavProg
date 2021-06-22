@@ -8,6 +8,7 @@ import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class J2dLevelState extends LevelState {
 
@@ -53,7 +54,7 @@ public class J2dLevelState extends LevelState {
         }
 
         //draw Bullets
-        for(Bullet i : bullets) {
+        for (Bullet i : bullets) {
             i.draw();
         }
 
@@ -77,7 +78,7 @@ public class J2dLevelState extends LevelState {
         g2d.setColor(Color.GREEN);
 
         for (int i = 0; i < lives; i++) {
-            g2d.fillRect(J2dGraph.WIDTH  - ((int) gr.reformX(ps.getcWidth()) + 10) * (3 - i), 7, (int) gr.reformX(ps.getcWidth()), (int) gr.reformY(ps.getcHeight()));
+            g2d.fillRect(J2dGraph.WIDTH - ((int) gr.reformX(ps.getcWidth()) + 10) * (3 - i), 7, (int) gr.reformX(ps.getcWidth()), (int) gr.reformY(ps.getcHeight()));
         }
 
     }

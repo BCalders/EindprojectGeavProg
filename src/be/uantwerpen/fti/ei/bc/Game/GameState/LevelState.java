@@ -3,19 +3,18 @@ package be.uantwerpen.fti.ei.bc.Game.GameState;
 import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
 import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
-import be.uantwerpen.fti.ei.bc.Graphics.Entities.J2dBullet;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Random;
 
 public abstract class LevelState extends GameState {
 
     private final AFactory f;
 
-    private boolean enemiesGoingRight;
+    private boolean enemiesGoingRight, isAtEdge;
+    private double speed;
 
     protected int score, lives, time;
     protected long levelStartTime;
@@ -64,9 +63,10 @@ public abstract class LevelState extends GameState {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 10; j++) {
                 EnemyShip e = f.createEnemyShip();
-                e.setPosition(-4 + 0.4 * j, 3.6 - 0.4 * i);
+                e.setPosition(-3 + 0.4 * j, 3.6 - 0.4 * i);
                 enemies.add(e);
             }
+
         }
     }
 
@@ -81,9 +81,8 @@ public abstract class LevelState extends GameState {
         enemies = new ArrayList<>();
         enemiesGoingRight = true;
         spawnFormation();
-//        EnemyShip e = f.createEnemyShip();
-//        e.setPosition(-1.5, 3.6);
-//        enemies.add(e);
+        isAtEdge = false;
+        speed = 0.02;
 
         //init playership
         this.ps = f.createPlayerShip();
@@ -91,44 +90,58 @@ public abstract class LevelState extends GameState {
 
         //init bullets
         bullets = new ArrayList<>();
-//        Bullet b = f.createBullet();
-//        b.setPosition(0, 4);
-//        b.setEnemyBullet();
-//        bullets.add(b);
     }
 
     @Override
     public void update() {
         int currentSecond = (int) Math.ceil(System.currentTimeMillis() - levelStartTime) / 1000;
-        time = 300 - currentSecond;
+        time = currentSecond;
         Random r = new Random();
+
+        //check for enemies outside playfield
+        for (EnemyShip i : enemies) {
+            if (i.detectEdge()) {
+                isAtEdge = true;
+                enemiesGoingRight = !enemiesGoingRight;
+                speed += 0.0005;
+                break;
+            }
+            if (i.getY() < -3.3) lose();
+        }
 
         //update enemies
         for (int i = 0; i < enemies.size(); i++) {
             EnemyShip tempE = enemies.get(i);
 
+            tempE.update();
+            tempE.setSpeed(speed);
+
+            if (isAtEdge) {
+                tempE.setPosition(tempE.getX(), tempE.getY() - 0.1);
+            }
+
             if (enemiesGoingRight) tempE.setVector(1, 0);
             else tempE.setVector(-1, 0);
 
-            tempE.update();
-
-            for (Bullet j : bullets) {
-                if (tempE.intersects(j) && !j.isEnemyBullet()) {
+            for (int j = 0; j < bullets.size(); j++) {
+                if (tempE.intersects(bullets.get(j)) && !bullets.get(j).isEnemyBullet()) {
                     kill(tempE);
+                    bullets.remove(j);
+                    j--;
                 }
             }
 
             if (tempE.shouldRemove()) {
                 enemies.remove(i);
-                System.out.println(tempE + " removed");
                 i--;
                 continue;
             }
 
-            if (r.nextInt(100) == 0) {
+            if (r.nextInt(3000) == 0) {
                 enemyShoot(tempE);
             }
         }
+        isAtEdge = false;
 
         //update playership
         ps.update();
@@ -146,7 +159,6 @@ public abstract class LevelState extends GameState {
 
             if (tempB.shouldRemove()) {
                 bullets.remove(i);
-                System.out.println(tempB + " removed");
                 i--;
             }
         }
@@ -155,7 +167,7 @@ public abstract class LevelState extends GameState {
         if (enemies.isEmpty()) win();
 
         //end game if dead or time runs out
-        if (time <= 0 || lives <= 0) {
+        if (100 - time <= 0 || lives <= 0) {
             System.out.println("Time: " + time + " Lives: " + lives);
             lose();
         }

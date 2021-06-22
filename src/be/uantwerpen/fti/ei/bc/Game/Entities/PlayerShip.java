@@ -12,13 +12,13 @@ public abstract class PlayerShip extends Entity {
     public PlayerShip() {
         this.width = 0.3;
         this.height = 0.2;
-        cWidth = 0.2;
+        cWidth = 0.3;
         cHeight = 0.2;
-        speed = 0.05;
-        fire = fireCost = 90;
+        speed = 0.03;
+        fire = fireCost = 45;
     }
 
-    public boolean isFlinching(){
+    public boolean isFlinching() {
         return isFlinching;
     }
 
@@ -42,14 +42,15 @@ public abstract class PlayerShip extends Entity {
                 x = xTemp;
         }
         if (dx > 0) {
-            if (xTemp > 3 - cWidth) {
+            if (xTemp > 3 - (width + cWidth) / 2) {
                 dx = 0;
                 x = 3 - cWidth;
             } else
                 x = xTemp;
         }
 
-        if(isFlinching && System.currentTimeMillis() - flinchtimer > 400) isFlinching = false;
+        //check done flinching
+        if (isFlinching && (System.currentTimeMillis() - flinchtimer) > 1000) isFlinching = false;
     }
 
     public abstract void draw();
@@ -63,10 +64,10 @@ public abstract class PlayerShip extends Entity {
         fire = 0;
     }
 
-    public void hit(){
-        if(!isFlinching) {
-            isFlinching = true;
-            flinchtimer = System.currentTimeMillis();
-        }
+    public void hit() {
+        if (isFlinching) return;
+        isFlinching = true;
+        flinchtimer = System.currentTimeMillis();
+
     }
 }

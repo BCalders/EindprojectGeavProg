@@ -36,7 +36,7 @@ public class J2dPlayerShip extends PlayerShip {
         //Test generation
 
         if(isFlinching) {
-            long elapsed = (System.currentTimeMillis() - flinchtimer)/1000;
+            long elapsed = (System.currentTimeMillis() - flinchtimer);
             if(elapsed / 50 % 2 == 0){
 
                 return;
@@ -50,8 +50,8 @@ public class J2dPlayerShip extends PlayerShip {
         g2d.fillRect(xCoord, yCoord, width2, height2);
 
         //draw collision box
-        g2d.setColor(Color.ORANGE);
-        g2d.fillRect(xCCoord, yCCoord, cwidth2, cheight2);
+//        g2d.setColor(Color.ORANGE);
+//        g2d.fillRect(xCCoord, yCCoord, cwidth2, cheight2);
 
     }
 }

@@ -39,7 +39,6 @@ public abstract class Bullet extends Entity {
 
         if (hit || Math.abs(y) > 4) {
             remove = true;
-            System.out.println(this + " should be removed");
         }
     }
 
