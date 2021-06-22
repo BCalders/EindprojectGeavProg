@@ -1,21 +1,45 @@
 package be.uantwerpen.fti.ei.bc.Game.Entities;
 
-import java.awt.image.BufferedImage;
 
-public abstract class Bullet extends Entity{
+public abstract class Bullet extends Entity {
 
-    private boolean isEnemyBullet, hit, remove;
-    private BufferedImage sprite, hitSprite;
+    protected boolean isEnemyBullet, hit, remove;
 
-    public Bullet(){
+
+    public Bullet() {
         width = 0.05;
         height = 0.1;
         cHeight = height;
         cWidth = width;
+        speed = .15;
+        isEnemyBullet = false;
+        dy = 1;
     }
 
-    public void update(){
+    public void setEnemyBullet() {
+        isEnemyBullet = true;
+    }
 
+    public boolean shouldRemove() {
+        return remove;
+    }
+
+    public boolean isEnemyBullet(){
+        return isEnemyBullet;
+    }
+
+    public void setHit() {
+        hit = true;
+        remove = true;
+    }
+
+    public void update() {
+        if (isEnemyBullet) y -= dy * speed;
+        else y += dy * speed;
+
+        if (hit || Math.abs(y) > 4) {
+            remove = true;
+        }
     }
 
     public abstract void draw();
