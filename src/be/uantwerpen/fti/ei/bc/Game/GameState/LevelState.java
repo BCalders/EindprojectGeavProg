@@ -6,6 +6,7 @@ import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public abstract class LevelState extends GameState {
@@ -17,7 +18,7 @@ public abstract class LevelState extends GameState {
 
     protected PlayerShip ps;
     protected LinkedList<EnemyShip> tempESs;
-    protected Bullet tempBullet;
+    protected ArrayList<Bullet> bullets;
 
     public LevelState(GameStateManager gsm, AFactory f) {
         super(gsm);
@@ -31,27 +32,28 @@ public abstract class LevelState extends GameState {
         score = 0;
         levelStartTime = System.currentTimeMillis();
 
-        //init Entities
-        this.ps = f.createPlayerShip();
-        this.tempBullet = f.createBullet();
+        //init Enemies
         tempESs = new LinkedList<>();
         for (int i = 0; i < 10; i++) {
             tempESs.add(f.createEnemyShip());
             tempESs.get(i).setPosition(-3 + 0.4 * i, 3.5);
-//            tempESs.get(i).setDx(0.05);
+            tempESs.get(i).setVector(1, 0);
         }
 
+        //init playership
+        this.ps = f.createPlayerShip();
         ps.setPosition(0, -3.7);
-        tempBullet.setPosition(0,0);
 
+        //init bullets
+        bullets = new ArrayList<>();
     }
 
-    private void lose(){
+    private void lose() {
         gsm.setScores(score, lives, time);
         gsm.setState(GameStateManager.GAMEOVERSTATE);
     }
 
-    private void win(){
+    private void win() {
         gsm.setScores(score, lives, time);
         gsm.setState(GameStateManager.WINSTATE);
     }
@@ -66,15 +68,27 @@ public abstract class LevelState extends GameState {
         int currentSecond = (int) Math.ceil(System.currentTimeMillis() - levelStartTime) / 1000;
         time = 300 - currentSecond;
 
-        //update Entities
-        ps.update();
-        for(EnemyShip i : tempESs){
+        //update enemies
+        for (EnemyShip i : tempESs) {
             i.update();
         }
 
+        //update playership
+        ps.update();
+
+        //update bullets
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).update();
+            if (bullets.get(i).shouldRemove()) {
+                System.out.println(bullets.get(i) + " Will be removed");
+                bullets.remove(i);
+                i--;
+            }
+        }
+
         //end game if dead or time runs out
-        if(time <= 0 || lives <= 0) {
-            System.out.println("Time: " + time +  " Lives: " + lives);
+        if (time <= 0 || lives <= 0) {
+            System.out.println("Time: " + time + " Lives: " + lives);
             lose();
         }
 
@@ -82,8 +96,20 @@ public abstract class LevelState extends GameState {
 
     public abstract void draw();
 
-    public void playerShoot() {
-        ps.shoot();
+    public void playerFire() {
+        if (ps.canFire()) {
+            ps.fire();
+            Bullet b = f.createBullet();
+            b.setPosition(ps.getX() + ps.getWidth() / 2, ps.getY());
+            bullets.add(b);
+        }
+    }
+
+    public void enemyShoot(EnemyShip e) {
+        Bullet b = f.createBullet();
+        b.setEnemyBullet();
+        b.setPosition(e.getX() + e.getWidth() / 2, e.getY());
+        bullets.add(b);
     }
 
     @Override
@@ -98,16 +124,16 @@ public abstract class LevelState extends GameState {
             ps.setVector(0, 0);
         }
         if (key.attack.isClicked()) {
-            playerShoot();
-            lives--;                // ----------------- testing
+            playerFire();
+//            lives--;                // ----------------- testing
         }
-        if (key.pause.isClicked()){
+        if (key.pause.isClicked()) {
             kill(5);             // ------------------ testing
 //            tempESs.remove(5);
         }
-        if(key.enter.isClicked()){
-            if(key.control.isDown) win();
-            if(key.shift.isDown) lose();
+        if (key.enter.isClicked()) {
+            if (key.control.isDown) win();
+            if (key.shift.isDown) lose();
         }
     }
 }

@@ -4,10 +4,13 @@ import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class J2dBullet extends Bullet {
 
     private final J2dGraph graph;
+
+    private BufferedImage hitSprite;
 
     public J2dBullet(J2dGraph graph){
         super();
@@ -29,7 +32,9 @@ public class J2dBullet extends Bullet {
         int height2 = (int) graph.reformY(height);
 
         //Test generation
-        g2d.setColor(Color.white);
+        if(hit) g2d.setColor(Color.RED);
+        else if(isEnemyBullet) g2d.setColor(new Color(255, 127,127));
+        else g2d.setColor(new Color(127, 127, 255));
         g2d.fillRect(xCoord, yCoord, width2, height2);
     }
 }

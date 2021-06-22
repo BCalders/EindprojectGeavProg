@@ -10,6 +10,7 @@ public abstract class EnemyShip extends Entity{
         cHeight = 0.2;
         cWidth = 0.2;
         isAlive = true;
+        speed = 0.02;
     }
 
     public void kill(){
@@ -17,7 +18,7 @@ public abstract class EnemyShip extends Entity{
     }
 
     public void update(){
-        x += dx;
+        x += dx * speed;
     }
 
     public abstract void draw();

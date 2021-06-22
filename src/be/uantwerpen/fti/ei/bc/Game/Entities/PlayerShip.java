@@ -6,7 +6,8 @@ public abstract class PlayerShip extends Entity {
     protected long flinchtimer;
 
     protected boolean isShooting = false;
-    protected int shootingCooldown;
+
+    private int fire, fireCost;
 
     public PlayerShip() {
         this.width = 0.3;
@@ -14,16 +15,25 @@ public abstract class PlayerShip extends Entity {
         cWidth = 0.2;
         cHeight = 0.2;
         speed = 0.05;
+        fire = fireCost = 120;
     }
 
     public void update() {
+        //fire
+        if (fire != fireCost) {
+            fire++;
+            isShooting = true;
+        } else {
+            fire = fireCost;
+            isShooting = false;
+        }
 
+        //movement
         double xTemp = x + dx;
-
         if (dx < 0) {
-            if (xTemp < -3 - (width - cWidth)/2) {
+            if (xTemp < -3 - (width - cWidth) / 2) {
                 dx = 0;
-                x = -3 - (width - cWidth)/2;
+                x = -3 - (width - cWidth) / 2;
             } else
                 x = xTemp;
         }
@@ -38,8 +48,12 @@ public abstract class PlayerShip extends Entity {
 
     public abstract void draw();
 
-    public void shoot() {
+    public boolean canFire() {
+        return fire == fireCost;
+    }
+
+    public void fire() {
         System.out.println("PLAYER SHOOT");
-        isShooting = true;
+        fire = 0;
     }
 }

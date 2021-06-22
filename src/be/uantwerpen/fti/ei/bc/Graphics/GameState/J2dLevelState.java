@@ -1,5 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Graphics.GameState;
 
+import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
@@ -52,7 +53,9 @@ public class J2dLevelState extends LevelState {
         }
 
         //draw Bullets
-        tempBullet.draw();
+        for(Bullet i : bullets) {
+            i.draw();
+        }
 
         //draw HUD
         int fontSize = 25;
