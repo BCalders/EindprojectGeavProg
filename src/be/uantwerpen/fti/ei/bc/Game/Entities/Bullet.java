@@ -8,8 +8,8 @@ public abstract class Bullet extends Entity{
     private BufferedImage sprite, hitSprite;
 
     public Bullet(){
-        width = 0.5;
-        height = 1;
+        width = 0.05;
+        height = 0.1;
         cHeight = height;
         cWidth = width;
     }

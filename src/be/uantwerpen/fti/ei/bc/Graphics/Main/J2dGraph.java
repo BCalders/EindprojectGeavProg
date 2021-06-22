@@ -40,22 +40,22 @@ public class J2dGraph extends GraphicsClass {
 
     @Override
     public double calculateX(double x) {
-        return ((x + 30) / 60) * WIDTH;
+        return ((x + 3) / 6) * WIDTH;
     }
 
     @Override
     public double calculateY(double y) {
-        return ((y + 40) / 80) * HEIGHT;
+        return (-(y - 4) / 8) * HEIGHT;
     }
 
     @Override
     public double reformX(double x) {
-        return (x / 60) * WIDTH;
+        return (x / 6) * WIDTH;
     }
 
     @Override
     public double reformY(double y) {
-        return (y / 80) * HEIGHT;
+        return (y / 8) * HEIGHT;
     }
 
     @Override

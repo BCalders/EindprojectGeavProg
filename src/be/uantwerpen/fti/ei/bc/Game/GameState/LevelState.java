@@ -37,10 +37,10 @@ public abstract class LevelState extends GameState {
         tempESs = new LinkedList<>();
         for (int i = 0; i < 10; i++) {
             tempESs.add(f.createEnemyShip());
-            tempESs.get(i).setPosition(-29 + 6 * i, -35);
+            tempESs.get(i).setPosition(-2.9 + 0.6 * i, 3.5);
         }
 
-        ps.setPosition(0, 37);
+        ps.setPosition(0, -3.7);
         tempBullet.setPosition(0,0);
 
     }

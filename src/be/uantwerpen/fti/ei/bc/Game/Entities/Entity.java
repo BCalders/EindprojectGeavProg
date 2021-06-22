@@ -79,13 +79,4 @@ public abstract class Entity {
         return (x < o.x + o.cWidth) && (o.x < x + cWidth) && (y < o.y + cHeight) && (o.y < y + cHeight) ;
     }
 
-    // x + cWidth, y + cHeigth, cWidth, cHeight
-
-//    public boolean intersects(Entity other) {
-//        Rectangle r1 = getRectangle();
-//        Rectangle r2 = other.getRectangle();
-//        return r1.intersects(r2);
-//    }
-
-
 }
