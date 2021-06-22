@@ -6,10 +6,10 @@ public abstract class PlayerShip extends Entity {
     protected int shootingCooldown;
 
     public PlayerShip() {
-        this.width = 0.2;
+        this.width = 0.3;
         this.height = 0.2;
-        cWidth = width;
-        cHeight = height;
+        cWidth = 0.2;
+        cHeight = 0.2;
         speed = 0.05;
     }
 
@@ -18,9 +18,9 @@ public abstract class PlayerShip extends Entity {
         double xTemp = x + dx;
 
         if (dx < 0) {
-            if (xTemp < -3) {
+            if (xTemp < -3 - (width - cWidth)/2) {
                 dx = 0;
-                x = -3;
+                x = -3 - (width - cWidth)/2;
             } else
                 x = xTemp;
         }
