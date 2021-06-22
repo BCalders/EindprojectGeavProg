@@ -1,4 +1,4 @@
-package be.uantwerpen.fti.ei.bc.Game.KeyHandler;
+package be.uantwerpen.fti.ei.bc.Graphics.Handlers;
 
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
@@ -10,9 +10,10 @@ public class KeyHandler implements KeyListener {
 
     public static ArrayList<Key> keys = new ArrayList<>();
 
-    public class Key {
-        public int presses, absorbs;
-        public boolean isDown, isClicked;
+    public static class Key {
+        private int presses, absorbs;
+        public boolean isDown;
+        private boolean isClicked;
 
         public Key() {
             keys.add(this);
@@ -27,12 +28,11 @@ public class KeyHandler implements KeyListener {
             }
         }
 
-        public boolean isClicked(){
-            if (isClicked){
+        public boolean isClicked() {
+            if (isClicked) {
                 isClicked = false;
                 return true;
-            }
-            else
+            } else
                 return false;
         }
 
@@ -45,7 +45,7 @@ public class KeyHandler implements KeyListener {
             }
         }
     }
-    
+
     public Key up = new Key();
     public Key down = new Key();
     public Key left = new Key();
@@ -54,40 +54,36 @@ public class KeyHandler implements KeyListener {
     public Key pause = new Key();
     public Key enter = new Key();
     public Key esc = new Key();
+    public Key shift = new Key();
+    public Key control = new Key();
 
     public KeyHandler(J2dGraph gr) {
         gr.getFrame().addKeyListener(this);
     }
 
     public void releaseAll() {
-        for (int i = 0; i < keys.size(); i++) {
-            keys.get(i).isDown = false;
+        for (Key i : keys) {
+            i.isDown = false;
         }
     }
 
     public void tick() {
-        for (int i = 0; i < keys.size(); i++) {
-            keys.get(i).tick();
+        for (Key i : keys) {
+            i.tick();
         }
     }
 
-    public void toggle(KeyEvent e, boolean pressed){
-        if(e.getKeyCode() == KeyEvent.VK_UP)
-            up.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_DOWN)
-            down.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_LEFT)
-            left.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT)
-            right.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_SPACE)
-            attack.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_P)
-            pause.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_ENTER)
-            enter.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
-            esc.toggle(pressed);
+    public void toggle(KeyEvent e, boolean pressed) {
+        if (e.getKeyCode() == KeyEvent.VK_UP) up.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) down.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) left.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) right.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) attack.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_P) pause.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) enter.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) esc.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_SHIFT) shift.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_CONTROL) control.toggle(pressed);
     }
 
     @Override

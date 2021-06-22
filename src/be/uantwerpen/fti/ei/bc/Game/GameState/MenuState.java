@@ -1,10 +1,10 @@
 package be.uantwerpen.fti.ei.bc.Game.GameState;
 
-import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
 public abstract class MenuState extends GameState{
 
-    private String[] options = {"Start", "Help", "Quit"};
+    private String[] options = {"Start", "Highscores", "Quit"};
     private int currentChoice = 0;
 
     public String[] getOptions() {
@@ -24,11 +24,10 @@ public abstract class MenuState extends GameState{
     }
 
     public MenuState(GameStateManager gsm){
-        this.gsm = gsm;
+        super(gsm);
     }
 
     public void init(){
-
     }
 
     public abstract void draw();
@@ -39,12 +38,11 @@ public abstract class MenuState extends GameState{
     private void select(){
         if(currentChoice == 0){
             // start
-            System.out.println("player pressed START!");
             gsm.setState(GameStateManager.LEVELSTATE);
         }
         if(currentChoice == 1) {
-            //help
-            System.out.println("player pressed HELP!");
+            //highscores
+            System.out.println("player pressed HIGHSCORES!");
         }
         if(currentChoice == 2) {
             gsm.exitGame("Player pressed Quit Game!");

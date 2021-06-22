@@ -1,9 +1,10 @@
 package be.uantwerpen.fti.ei.bc.Game.Main;
 
-import be.uantwerpen.fti.ei.bc.Game.Entities.TestSquare;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Stopwatch.Stopwatch;
-import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
+
+import static java.lang.Math.ceil;
 
 public class Game{
 
@@ -11,7 +12,6 @@ public class Game{
 
     private GameStateManager gsm;
 
-    private TestSquare ts;
 
     public Game(AFactory f) {
         this.f = f;
@@ -28,10 +28,8 @@ public class Game{
         gsm = new GameStateManager(f);
         KeyHandler key = f.createKeyHandler();
 
-        ts = f.createTS(50, 50, 0, 0);
-
         while (isRunning) {
-            s.go();
+            long start = s.go();
 
             input(key);
             update();
@@ -45,18 +43,18 @@ public class Game{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            double elapsed = (System.currentTimeMillis() - start)/1000.0;
+            graph.setFps((int) ceil(1/elapsed));
         }
-
+        System.exit(2);
     }
 
     private void update() {
         gsm.update();
-        ts.update();
     }
 
     private void draw() {
         gsm.draw();
-        ts.draw();
     }
 
     private void input(KeyHandler key){

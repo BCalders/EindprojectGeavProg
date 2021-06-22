@@ -17,7 +17,7 @@ public class J2dGraph extends GraphicsClass {
     private final JPanel panel;
 
     public J2dGraph() {
-        frame = new JFrame("Project");
+        frame = new JFrame("Initializing");
         panel = new JPanel(true) {
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -25,15 +25,42 @@ public class J2dGraph extends GraphicsClass {
             }
         };
         panel.setBackground(Color.MAGENTA);
-        frame.setContentPane(panel);
+        panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        frame.getContentPane().add(panel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setFocusable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(WIDTH, HEIGHT);
         frame.setResizable(false);
         frame.setVisible(true);
 
         image = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_4BYTE_ABGR_PRE);
         g2d = image.createGraphics();
+    }
+
+    @Override
+    public double calculateX(double x) {
+        return ((x + 3) / 6) * WIDTH;
+    }
+
+    @Override
+    public double calculateY(double y) {
+        return (-(y - 4) / 8) * HEIGHT;
+    }
+
+    @Override
+    public double reformX(double x) {
+        return (x / 6) * WIDTH;
+    }
+
+    @Override
+    public double reformY(double y) {
+        return (y / 8) * HEIGHT;
+    }
+
+    @Override
+    public void setFps(int v) {
+        frame.setTitle("Space Invaders 4-Geav Prog Fps: " + v);
     }
 
     public Graphics2D getG2d() {
@@ -60,7 +87,6 @@ public class J2dGraph extends GraphicsClass {
         if (g2d != null)
             g2d.drawImage(image, 0, 0, null);
     }
-
 
 
 }

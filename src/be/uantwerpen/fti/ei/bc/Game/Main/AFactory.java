@@ -1,10 +1,13 @@
 package be.uantwerpen.fti.ei.bc.Game.Main;
 
-import be.uantwerpen.fti.ei.bc.Game.Entities.TestSquare;
+import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
+import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
+import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
+import be.uantwerpen.fti.ei.bc.Game.GameState.GameState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.MenuState;
-import be.uantwerpen.fti.ei.bc.Game.KeyHandler.KeyHandler;
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
 public abstract class AFactory {
 
@@ -15,9 +18,17 @@ public abstract class AFactory {
 
     public abstract MenuState createMenuState(GameStateManager gsm);
 
-    public abstract TestSquare createTS(int x, int y, double dx, double dy);
-
     public abstract KeyHandler createKeyHandler();
 
     public abstract LevelState createLevelState(GameStateManager gsm);
+
+    public abstract PlayerShip createPlayerShip();
+
+    public abstract EnemyShip createEnemyShip();
+
+    public abstract Bullet createBullet();
+
+    public abstract GameState createWinstate(GameStateManager gsm);
+
+    public abstract GameState createGameOverState(GameStateManager gsm);
 }
