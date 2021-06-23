@@ -11,8 +11,6 @@ public class J2dGameOverState extends GameOverState {
 
     private J2dGraph gr;
 
-    protected Background bg;
-
     private Color titleColor;
     private Font titleFont, font;
 
@@ -31,24 +29,19 @@ public class J2dGameOverState extends GameOverState {
         linesVisible = true;
         linesVisibleCount = 0;
 
-        try {
-            bg = new Background(gr, "/Backgrounds/background.png");
-            bg.setVector(0, 0.2);
+        J2dGraph.bg.setVector(0, 0.2);
 
-            titleColor = new Color(0, 255, 180);
-            titleFont = new Font("Century Gothic", Font.BOLD, 60);
+        titleColor = new Color(0, 255, 180);
+        titleFont = new Font("Century Gothic", Font.BOLD, 60);
 
-            font = new Font("Arial", Font.PLAIN, 30);
+        font = new Font("Arial", Font.PLAIN, 30);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
     public void update() {
         super.update();
-        bg.update();
+        J2dGraph.bg.update();
 
         linesVisibleCount++;
 
@@ -65,7 +58,7 @@ public class J2dGameOverState extends GameOverState {
         String title = "GAME OVER";
 
         //draw Background
-        bg.draw();
+        J2dGraph.bg.draw();
 
         //draw Title
         g2d.setColor(titleColor);

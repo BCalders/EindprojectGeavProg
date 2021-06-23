@@ -10,8 +10,6 @@ public class J2dMenuState extends MenuState {
 
     private final J2dGraph gr;
 
-    private Background bg;
-
     private Color titleColor, selectColor;
     private Font titleFont, font, selectFont;
 
@@ -30,26 +28,20 @@ public class J2dMenuState extends MenuState {
         isBlinking = true;
         blinkingCounter = 0;
 
-        try {
-            bg = new Background(gr, "/Backgrounds/background.png");
-            bg.setVector(0, 0.2);
+        titleColor = new Color(0, 255, 180);
+        titleFont = new Font("Century Gothic", Font.PLAIN, 60);
 
-            titleColor = new Color(0, 255, 180);
-            titleFont = new Font("Century Gothic", Font.PLAIN, 60);
+        font = new Font("Arial", Font.PLAIN, 30);
+        selectFont = new Font("Arial", Font.BOLD, 30);
+        selectColor = titleColor.darker().darker();
 
-            font = new Font("Arial", Font.PLAIN, 30);
-            selectFont = new Font("Arial", Font.BOLD, 30);
-            selectColor = titleColor.darker().darker();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        J2dGraph.bg.setVector(0, 0.2);
     }
 
     @Override
     public void update() {
         super.update();
-        bg.update();
+        J2dGraph.bg.update();
 
         blinkingCounter++;
 
@@ -66,7 +58,7 @@ public class J2dMenuState extends MenuState {
         String title = "Space Invaders";
 
         //draw Background
-        bg.draw();
+        J2dGraph.bg.draw();
 
         //draw Title
         g2d.setColor(titleColor);

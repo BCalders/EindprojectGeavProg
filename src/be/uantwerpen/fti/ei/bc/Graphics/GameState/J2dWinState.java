@@ -8,9 +8,8 @@ import java.awt.*;
 
 public class J2dWinState extends WinState {
 
-    protected J2dGraph gr;
+    private final J2dGraph gr;
 
-    protected Background bg;
 
     private Color titleColor;
     private Font titleFont, font;
@@ -30,24 +29,20 @@ public class J2dWinState extends WinState {
         linesVisible = true;
         linesVisibleCount = 0;
 
-        try {
-            bg = new Background(gr, "/Backgrounds/background.png");
-            bg.setVector(0, 0.2);
+        J2dGraph.bg.setVector(0, 0.2);
 
-            titleColor = new Color(0, 255, 180);
-            titleFont = new Font("Century Gothic", Font.BOLD, 60);
+        titleColor = new Color(0, 255, 180);
+        titleFont = new Font("Century Gothic", Font.BOLD, 60);
 
-            font = new Font("Arial", Font.PLAIN, 30);
+        font = new Font("Arial", Font.PLAIN, 30);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
     public void update() {
         super.update();
-        bg.update();
+        J2dGraph.bg.update();
 
         linesVisibleCount++;
 
@@ -64,7 +59,7 @@ public class J2dWinState extends WinState {
         String title = "YOU WIN!";
 
         //draw Background
-        bg.draw();
+        J2dGraph.bg.draw();
 
         //draw Title
         g2d.setColor(titleColor);
@@ -87,9 +82,9 @@ public class J2dWinState extends WinState {
         }
         g2d.drawLine(
                 titleXLocation,
-                J2dGraph.HEIGHT / 2 + ((2 - 1) * scoreSpacing) + 10,
+                J2dGraph.HEIGHT / 2 + (scoreSpacing) + 10,
                 scoreXLocation + g2d.getFontMetrics(g2d.getFont()).stringWidth(getScoreCalc()[1]),
-                J2dGraph.HEIGHT / 2 + ((2 - 1) * scoreSpacing) + 10
+                J2dGraph.HEIGHT / 2 + (scoreSpacing) + 10
         );
 
         //draw return
