@@ -94,8 +94,7 @@ public abstract class LevelState extends GameState {
 
     @Override
     public void update() {
-        int currentSecond = (int) Math.ceil(System.currentTimeMillis() - levelStartTime) / 1000;
-        time = currentSecond;
+        time = (int) Math.ceil(System.currentTimeMillis() - levelStartTime) / 1000;
         Random r = new Random();
 
         //check for enemies outside playfield
