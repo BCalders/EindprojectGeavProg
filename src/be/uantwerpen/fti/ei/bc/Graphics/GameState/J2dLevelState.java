@@ -8,7 +8,6 @@ import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class J2dLevelState extends LevelState {
 

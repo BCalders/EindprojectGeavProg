@@ -29,6 +29,7 @@ public abstract class LevelState extends GameState {
     }
 
     private void lose() {
+        System.out.println("Time: " + time + " Lives: " + lives);
         gsm.setScores(score, lives, time);
         gsm.setState(GameStateManager.GAMEOVERSTATE);
     }
@@ -40,7 +41,7 @@ public abstract class LevelState extends GameState {
 
     private void kill(EnemyShip e) {
         e.kill();
-        score += 500;
+        score += 200;
     }
 
     public void playerFire() {
@@ -66,7 +67,6 @@ public abstract class LevelState extends GameState {
                 e.setPosition(-3 + 0.4 * j, 3.6 - 0.4 * i);
                 enemies.add(e);
             }
-
         }
     }
 
@@ -106,6 +106,7 @@ public abstract class LevelState extends GameState {
                 speed += 0.0005;
                 break;
             }
+            // enemies reach destination
             if (i.getY() < -3.3) lose();
         }
 
@@ -137,7 +138,7 @@ public abstract class LevelState extends GameState {
                 continue;
             }
 
-            if (r.nextInt(3000) == 0) {
+            if (r.nextInt(2000) == 0) {
                 enemyShoot(tempE);
             }
         }
@@ -168,7 +169,6 @@ public abstract class LevelState extends GameState {
 
         //end game if dead or time runs out
         if (100 - time <= 0 || lives <= 0) {
-            System.out.println("Time: " + time + " Lives: " + lives);
             lose();
         }
 
@@ -191,6 +191,7 @@ public abstract class LevelState extends GameState {
             playerFire();
         }
         if (key.pause.isClicked()) {
+            gsm.pauseState(this);
         }
         if (key.enter.isClicked()) {
             if (key.control.isDown) win();

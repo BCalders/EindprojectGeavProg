@@ -9,9 +9,10 @@ import java.util.ArrayList;
 public class GameStateManager {
 
     private final ArrayList<GameState> gameStates;
+    private final PauseState pauseState;
     private int currentState;
 
-    public static final int MENUSTATE = 0, LEVELSTATE = 1, WINSTATE = 2, GAMEOVERSTATE = 3, PAUSESTATE = 4, HIGHSCORE = 5;
+    public static final int MENUSTATE = 0, LEVELSTATE = 1, WINSTATE = 2, GAMEOVERSTATE = 3, HIGHSCORE = 4, PAUSED = 5;
     protected int[] scores;
 
 
@@ -23,6 +24,10 @@ public class GameStateManager {
         gameStates.add(f.createLevelState(this));
         gameStates.add(f.createWinstate(this));
         gameStates.add(f.createGameOverState(this));
+        gameStates.add(null);
+
+        pauseState = f.createPauseState(this);
+        gameStates.add(pauseState);
 
         gameStates.get(currentState).init();
     }
@@ -39,6 +44,17 @@ public class GameStateManager {
     public void setState(int state) {
         currentState = state;
         gameStates.get(currentState).init();
+    }
+
+    public void continueState(int state){
+        currentState = state;
+    }
+
+    public void pauseState(GameState state){
+        pauseState.init();
+        pauseState.pause(state);
+        currentState = PAUSED;
+        gameStates.get(PAUSED).init();
     }
 
     public void setScores(int score, int lives, int time){
@@ -58,12 +74,5 @@ public class GameStateManager {
         if(key.esc.isDown){
             exitGame("Player pressed ESC!");
         }
-        if(key.pause.isClicked()){
-            pauseInput();
-        }
-    }
-
-    private void pauseInput() {
-        System.out.println("PAUSE KEY WAS PRESSED");
     }
 }
