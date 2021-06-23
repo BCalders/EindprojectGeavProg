@@ -20,14 +20,14 @@ public abstract class WinState extends GameState {
         score = scores[0];
         lives = scores[1];
         time = scores[2];
-        totalScore = score + (lives * 100) + (time * 10);
+        totalScore = score + (lives * 1000) + ((60 - time) * 30);
     }
 
-    public String[] getScoreCalc(){
+    public String[] getScoreCalc() {
         String[] scoreCalc = new String[]{
                 score + "",                 // om er een string van te maken
-                lives + " x 100",
-                (100 - time) + " x 10",
+                lives + " x 1000",
+                (60 - time) + " x 30",
                 totalScore + ""
         };
         return scoreCalc;
@@ -42,6 +42,6 @@ public abstract class WinState extends GameState {
 
     @Override
     public void input(KeyHandler key) {
-        if(key.enter.isClicked()) gsm.setState(GameStateManager.MENUSTATE);
+        if (key.enter.isClicked()) gsm.setState(GameStateManager.MENUSTATE);
     }
 }

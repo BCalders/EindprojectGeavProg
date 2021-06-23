@@ -1,6 +1,7 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Main;
 
 import be.uantwerpen.fti.ei.bc.Game.Main.GraphicsClass;
+import be.uantwerpen.fti.ei.bc.Graphics.GameState.Background;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,8 @@ public class J2dGraph extends GraphicsClass {
 
     private final JFrame frame;
     private final JPanel panel;
+
+    public static Background bg;
 
     public J2dGraph() {
         frame = new JFrame("Initializing");
@@ -36,6 +39,15 @@ public class J2dGraph extends GraphicsClass {
 
         image = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_4BYTE_ABGR_PRE);
         g2d = image.createGraphics();
+
+        //init background
+        try {
+            bg = new Background(this, "/Backgrounds/background.png");
+            bg.setVector(0, 0.2);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

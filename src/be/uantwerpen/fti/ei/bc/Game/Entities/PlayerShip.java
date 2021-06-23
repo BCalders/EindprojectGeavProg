@@ -68,6 +68,6 @@ public abstract class PlayerShip extends Entity {
         if (isFlinching) return;
         isFlinching = true;
         flinchtimer = System.currentTimeMillis();
-
+        return;
     }
 }

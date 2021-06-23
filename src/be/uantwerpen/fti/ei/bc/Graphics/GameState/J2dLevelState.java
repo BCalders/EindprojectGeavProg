@@ -8,12 +8,10 @@ import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class J2dLevelState extends LevelState {
 
     private final J2dGraph gr;
-    private Background bg;
 
     public J2dLevelState(J2dGraph graph, GameStateManager gsm, AFactory f) {
         super(gsm, f);
@@ -24,18 +22,13 @@ public class J2dLevelState extends LevelState {
     public void init() {
         super.init();
 
-        try {
-            bg = new Background(gr, "/Backgrounds/background.png");
-            bg.setVector(0, 2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        J2dGraph.bg.setVector(0, 2);
     }
 
     @Override
     public void update() {
         super.update();
-        bg.update();
+        J2dGraph.bg.update();
     }
 
     @Override
@@ -43,7 +36,7 @@ public class J2dLevelState extends LevelState {
         Graphics2D g2d = gr.getG2d();
 
         //draw Background
-        bg.draw();
+        J2dGraph.bg.draw();
 
         //draw PlayerShip
         ps.draw();
