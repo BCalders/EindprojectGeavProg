@@ -137,7 +137,8 @@ public abstract class LevelState extends GameState {
                 continue;
             }
 
-            if (r.nextInt(2000) == 0) {
+            int shootRNG = 2000 - (40 * (40 - enemies.size()));
+            if (r.nextInt(shootRNG) == 0) {
                 enemyShoot(tempE);
             }
         }

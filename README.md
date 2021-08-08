@@ -20,6 +20,7 @@ The game is an own interpretation of the well know game "Space Invaders" in whic
 To be added:
 - [x] Pause state
 - [x] Backgrounds
+- [ ] Config File
 - [ ] Graphics Handler/Sprites
 - [ ] Highscoring System
 - [ ] Highscore Page

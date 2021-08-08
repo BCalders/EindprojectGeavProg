@@ -45,7 +45,7 @@ public class J2dMenuState extends MenuState {
 
         blinkingCounter++;
 
-        if (blinkingCounter > 30) {
+        if (blinkingCounter > 20) {
             isBlinking = !isBlinking;
             blinkingCounter = 0;
         }
