@@ -11,11 +11,11 @@ public class J2dWinState extends WinState {
     private final J2dGraph gr;
 
 
-    private Color titleColor;
+    private Color titleColor, selectColor;
     private Font titleFont, font;
 
-    private boolean linesVisible;
-    private int linesVisibleCount;
+    private boolean linesVisible, isBlinking;
+    private int linesVisibleCount, blinkingCounter;
 
     public J2dWinState(J2dGraph graph, GameStateManager gsm) {
         super(gsm);
@@ -34,6 +34,8 @@ public class J2dWinState extends WinState {
         titleColor = new Color(0, 255, 180);
         titleFont = new Font("Century Gothic", Font.BOLD, 60);
 
+        selectColor = titleColor.darker().darker();
+
         font = new Font("Arial", Font.PLAIN, 30);
 
 
@@ -45,10 +47,15 @@ public class J2dWinState extends WinState {
         J2dGraph.bg.update();
 
         linesVisibleCount++;
+        blinkingCounter++;
 
         if (linesVisibleCount > 30) {
             linesVisible = !linesVisible;
             linesVisibleCount = 0;
+        }
+        if (blinkingCounter > 20) {
+            isBlinking = !isBlinking;
+            blinkingCounter = 0;
         }
     }
 
@@ -57,9 +64,19 @@ public class J2dWinState extends WinState {
         Graphics2D g2d = gr.getG2d();
         int titleXLocation, titleYLocation;
         String title = "YOU WIN!";
+        String hiscore = "You Have Scored A HIGHSCORE!";
 
         //draw Background
         J2dGraph.bg.draw();
+
+        //draw highscore
+        if (isHighscore) {
+            if (isBlinking) g2d.setColor(titleColor);
+            else g2d.setColor(selectColor);
+            g2d.setFont(font);
+            g2d.drawString(hiscore, (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(hiscore)) / 2 , J2dGraph.HEIGHT / 8);
+        }
+
 
         //draw Title
         g2d.setColor(titleColor);

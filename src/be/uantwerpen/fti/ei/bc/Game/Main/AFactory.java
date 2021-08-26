@@ -30,6 +30,4 @@ public abstract class AFactory {
     public abstract GameState createGameOverState(GameStateManager gsm);
 
     public abstract PauseState createPauseState(GameStateManager gsm);
-
-    public abstract HighScoreState createHighScoreState(GameStateManager gsm);
 }

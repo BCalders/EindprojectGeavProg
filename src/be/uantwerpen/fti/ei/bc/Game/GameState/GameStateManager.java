@@ -4,6 +4,7 @@ package be.uantwerpen.fti.ei.bc.Game.GameState;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameStateManager {
@@ -12,7 +13,7 @@ public class GameStateManager {
     private final PauseState pauseState;
     private int currentState;
 
-    public static final int MENUSTATE = 0, LEVELSTATE = 1, WINSTATE = 2, GAMEOVERSTATE = 3, HIGHSCORE = 4, PAUSED = 5;
+    public static final int MENUSTATE = 0, LEVELSTATE = 1, WINSTATE = 2, GAMEOVERSTATE = 3, PAUSED = 4;
     protected int[] scores;
 
 
@@ -24,9 +25,6 @@ public class GameStateManager {
         gameStates.add(f.createLevelState(this));
         gameStates.add(f.createWinstate(this));
         gameStates.add(f.createGameOverState(this));
-        gameStates.add(f.createHighScoreState(this));
-        gameStates.add(null);
-
         pauseState = f.createPauseState(this);
         gameStates.add(pauseState);
 

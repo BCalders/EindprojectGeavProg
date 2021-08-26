@@ -22,8 +22,7 @@ To be added:
 - [x] Backgrounds
 - [ ] Config File
 - [x] Graphics Handler/Sprites
-- [ ] Highscoring System
-- [ ] Highscore Page
+- [x] Highscoring System
 - [ ] Sounds
 - [ ] Bonusses
 - [ ] Explosions

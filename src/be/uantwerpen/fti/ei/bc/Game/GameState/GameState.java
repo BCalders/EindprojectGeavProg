@@ -2,6 +2,8 @@ package be.uantwerpen.fti.ei.bc.Game.GameState;
 
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
+import java.io.IOException;
+
 public abstract class GameState {
 
     protected GameStateManager gsm;

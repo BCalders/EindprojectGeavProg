@@ -47,16 +47,5 @@ public class J2dPlayerShip extends PlayerShip {
             }
         }
         g2d.drawImage(sprite, xCoord, yCoord, width2, height2, null);
-//        if (isShooting) {
-//            g2d.setColor(Color.RED);
-//            isShooting = false;
-//        } else
-//            g2d.setColor(Color.GREEN);
-//        g2d.fillRect(xCoord, yCoord, width2, height2);
-
-        //draw collision box
-//        g2d.setColor(Color.ORANGE);
-//        g2d.fillRect(xCCoord, yCCoord, cwidth2, cheight2);
-
     }
 }
