@@ -42,6 +42,6 @@ public abstract class WinState extends GameState {
 
     @Override
     public void input(KeyHandler key) {
-        if (key.enter.isClicked()) gsm.setState(GameStateManager.MENUSTATE);
+        if (key.enter.isClicked()) gsm.setState(GameStateManager.HIGHSCORE);
     }
 }

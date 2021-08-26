@@ -68,4 +68,9 @@ public class J2dFactory extends AFactory {
     public PauseState createPauseState(GameStateManager gsm) {
         return new J2dPauseState(graph, gsm);
     }
+
+    @Override
+    public HighScoreState createHighScoreState(GameStateManager gsm) {
+        return new J2dHighScoreState(graph, gsm);
+    }
 }

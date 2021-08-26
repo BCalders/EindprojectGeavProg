@@ -42,6 +42,7 @@ public abstract class MenuState extends GameState{
         }
         if(currentChoice == 1) {
             //highscores
+            gsm.setState(GameStateManager.HIGHSCORE);
             System.out.println("player pressed HIGHSCORES!");
         }
         if(currentChoice == 2) {

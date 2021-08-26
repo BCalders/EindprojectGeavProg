@@ -24,6 +24,7 @@ public class GameStateManager {
         gameStates.add(f.createLevelState(this));
         gameStates.add(f.createWinstate(this));
         gameStates.add(f.createGameOverState(this));
+        gameStates.add(f.createHighScoreState(this));
         gameStates.add(null);
 
         pauseState = f.createPauseState(this);

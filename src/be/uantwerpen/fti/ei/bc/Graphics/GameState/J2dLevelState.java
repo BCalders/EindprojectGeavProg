@@ -77,7 +77,7 @@ public class J2dLevelState extends LevelState {
         g2d.setColor(Color.GREEN);
 
         for (int i = 0; i < lives; i++) {
-            g2d.drawImage(livesTexture, J2dGraph.WIDTH - ((int) gr.reformX(ps.getcWidth()) + 13) * (3 - i), 7, (int) gr.reformX(ps.getWidth()), (int) gr.reformY(ps.getHeight()), null);
+            g2d.drawImage(TextureHandler.colorSprite(livesTexture, hudColor), J2dGraph.WIDTH - ((int) gr.reformX(ps.getcWidth()) + 13) * (3 - i), 7, (int) gr.reformX(ps.getWidth()), (int) gr.reformY(ps.getHeight()), null);
         }
 
     }

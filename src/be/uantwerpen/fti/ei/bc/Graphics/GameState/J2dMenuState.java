@@ -84,7 +84,8 @@ public class J2dMenuState extends MenuState {
                 else g2d.setColor(selectColor);
 
                 g2d.setStroke(new BasicStroke(2));
-                g2d.drawImage(icon, titleXLocation - 10 - 50, choiceYLocation - 23, 50, 25, null);
+//                TextureHandler.colorSprite(icon, titleColor);
+                g2d.drawImage(TextureHandler.colorSprite(icon, titleColor), titleXLocation - 10 - 50, choiceYLocation - 23, 50, 25, null);
             } else {
                 g2d.setFont(font);
                 g2d.setColor(selectColor);
