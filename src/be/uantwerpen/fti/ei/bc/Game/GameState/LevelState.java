@@ -6,6 +6,10 @@ import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,7 +20,7 @@ public abstract class LevelState extends GameState {
     private boolean enemiesGoingRight, isAtEdge;
     private double speed;
 
-    protected int score, lives, time;
+    protected int score, lives, time, hiScore = -1;
     protected long levelStartTime;
 
     protected PlayerShip ps;
@@ -70,6 +74,29 @@ public abstract class LevelState extends GameState {
         }
     }
 
+    private int readHiScore(){
+
+        FileReader readFile;
+        BufferedReader reader = null;
+
+        try {
+            readFile = new FileReader("src/be/uantwerpen/fti/ei/bc/Resources/Highscores/hiScore.dat");
+            reader = new BufferedReader(readFile);
+            return Integer.parseInt(reader.readLine());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("File could not be read!");
+            return -1;
+        }
+        finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public void init() {
         //init values
@@ -90,6 +117,9 @@ public abstract class LevelState extends GameState {
 
         //init bullets
         bullets = new ArrayList<>();
+
+        //get hiScore
+        hiScore = readHiScore();
     }
 
     @Override
@@ -171,6 +201,9 @@ public abstract class LevelState extends GameState {
         if (lives <= 0) {    //100 - time <= 0
             lose();
         }
+
+        //highscore is lower than actual score
+        if(hiScore < score) hiScore = score;
 
     }
 

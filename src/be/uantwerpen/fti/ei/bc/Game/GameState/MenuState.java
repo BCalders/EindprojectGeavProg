@@ -4,7 +4,7 @@ import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
 public abstract class MenuState extends GameState{
 
-    private String[] options = {"Start", "Highscores", "Quit"};
+    private String[] options = {"Start", "Quit Game"};
     private int currentChoice = 0;
 
     public String[] getOptions() {
@@ -41,10 +41,6 @@ public abstract class MenuState extends GameState{
             gsm.setState(GameStateManager.LEVELSTATE);
         }
         if(currentChoice == 1) {
-            //highscores
-            System.out.println("player pressed HIGHSCORES!");
-        }
-        if(currentChoice == 2) {
             gsm.exitGame("Player pressed Quit Game!");
         }
     }

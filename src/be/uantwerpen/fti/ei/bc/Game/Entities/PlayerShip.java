@@ -12,7 +12,7 @@ public abstract class PlayerShip extends Entity {
     public PlayerShip() {
         this.width = 0.4;
         this.height = 0.2;
-        cWidth = 0.3;
+        cWidth = 0.35;
         cHeight = 0.2;
         speed = 0.03;
         fire = fireCost = 45;

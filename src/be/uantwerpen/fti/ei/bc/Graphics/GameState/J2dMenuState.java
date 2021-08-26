@@ -77,14 +77,20 @@ public class J2dMenuState extends MenuState {
         for (int i = 0; i < getOptions().length; i++) {
             int choiceSpacing = 50;
             int choiceYLocation = J2dGraph.HEIGHT / 2 + ((i - 1) * choiceSpacing);
+            Color usedColor;
             if (i == getCurrentChoice()) {
                 g2d.setFont(selectFont);
 
-                if (isBlinking) g2d.setColor(titleColor);
-                else g2d.setColor(selectColor);
+                if (isBlinking) {g2d.setColor(titleColor);
+                    usedColor = titleColor;
+                }
+                else {
+                    g2d.setColor(selectColor);
+                    usedColor = selectColor;
+                }
 
                 g2d.setStroke(new BasicStroke(2));
-                g2d.drawImage(icon, titleXLocation - 10 - 50, choiceYLocation - 23, 50, 25, null);
+                g2d.drawImage(TextureHandler.colorSprite(icon, usedColor), titleXLocation - 10 - 50, choiceYLocation - 23, 50, 25, null);
             } else {
                 g2d.setFont(font);
                 g2d.setColor(selectColor);

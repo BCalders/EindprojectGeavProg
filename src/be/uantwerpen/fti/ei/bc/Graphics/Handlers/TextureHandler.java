@@ -1,8 +1,10 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Handlers;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.awt.*;
+import java.awt.Image;
+import java.awt.image.*;
+import java.io.IOException;;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -34,5 +36,24 @@ public class TextureHandler {
         }
 
         return eSprites;
+    }
+
+    public static Image colorSprite(BufferedImage tile, Color intFrontColor){
+        int markerRGB = new Color(0xff,0xff,0xff).getRGB() | 0xFF000000;
+        ImageFilter imageFilter = new RGBImageFilter()
+        {
+            @Override
+            public int filterRGB(int x, int y, int rgb)
+            {
+                if ((rgb | 0xFF000000) == markerRGB)
+                {
+                    return rgb;
+                }
+                return 0xFF000000 | intFrontColor.getRGB();
+            }
+        };
+        ImageProducer ip = new FilteredImageSource(tile.getSource(), imageFilter);
+        Image image = Toolkit.getDefaultToolkit().createImage(ip);
+        return image;
     }
 }
