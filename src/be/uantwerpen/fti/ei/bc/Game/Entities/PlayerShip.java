@@ -7,7 +7,8 @@ public abstract class PlayerShip extends Entity {
 
     protected boolean isShooting = false;
 
-    private int fire, fireCost;
+    private int fire;
+    private final int fireCost;
 
     public PlayerShip() {
         this.width = 0.4;
@@ -67,6 +68,5 @@ public abstract class PlayerShip extends Entity {
         if (isFlinching) return;
         isFlinching = true;
         flinchtimer = System.currentTimeMillis();
-        return;
     }
 }

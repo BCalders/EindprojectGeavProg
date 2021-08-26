@@ -1,5 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Entities;
 
+import be.uantwerpen.fti.ei.bc.Graphics.Audio.AudioPlayer;
 import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.TextureHandler;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
@@ -15,6 +16,8 @@ public class J2dEnemyShip extends EnemyShip {
     private static ArrayList<BufferedImage[]> sprites;
     private final Animation animation = new Animation();
 
+    private static final AudioPlayer eHit = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Enemies/EnemyHit2.wav", J2dGraph.SFXVOL);
+
     public J2dEnemyShip(J2dGraph graph, int type) {
         super(type);
         this.graph = graph;
@@ -24,6 +27,12 @@ public class J2dEnemyShip extends EnemyShip {
 
     public static void loadsprites() {
         sprites = TextureHandler.getEnemyTextures();
+    }
+
+    @Override
+    public void kill() {
+        super.kill();
+        eHit.play();
     }
 
     @Override

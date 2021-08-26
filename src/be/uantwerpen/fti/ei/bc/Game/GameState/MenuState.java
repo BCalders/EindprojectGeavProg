@@ -51,11 +51,11 @@ public abstract class MenuState extends GameState{
         if(key.up.isClicked()){
             currentChoice--;
             if(currentChoice < 0)
-                currentChoice = 2;
+                currentChoice = 1;
         }
         if(key.down.isClicked()){
             currentChoice++;
-            if(currentChoice > 2)
+            if(currentChoice > 1)
                 currentChoice = 0;
         }
     }

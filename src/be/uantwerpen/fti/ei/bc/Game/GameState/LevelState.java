@@ -7,7 +7,6 @@ import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -99,6 +98,7 @@ public abstract class LevelState extends GameState {
 
     @Override
     public void init() {
+
         //init values
         lives = 3;
         score = 0;

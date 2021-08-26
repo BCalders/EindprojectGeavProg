@@ -4,7 +4,6 @@ import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Stopwatch.Stopwatch;
 
-import static java.lang.Math.ceil;
 
 public class Game{
 

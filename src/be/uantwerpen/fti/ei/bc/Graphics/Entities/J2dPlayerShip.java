@@ -1,5 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Entities;
 
+import be.uantwerpen.fti.ei.bc.Graphics.Audio.AudioPlayer;
 import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.TextureHandler;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
@@ -10,12 +11,20 @@ import java.awt.image.BufferedImage;
 public class J2dPlayerShip extends PlayerShip {
 
     private final J2dGraph graph;
-    private BufferedImage sprite;
+    private final BufferedImage sprite;
+
+    private static final AudioPlayer playerHit = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Player/PlayerHit.wav", J2dGraph.SFXVOL);
 
     public J2dPlayerShip(J2dGraph graph) {
         super();
         this.graph = graph;
         sprite = TextureHandler.getPlayershipTexture();
+    }
+
+    @Override
+    public void hit() {
+        super.hit();
+        playerHit.play();
     }
 
     @Override

@@ -1,7 +1,5 @@
 package be.uantwerpen.fti.ei.bc.Game.Entities;
 
-import java.awt.*;
-
 public abstract class Entity {
 
     //pos and vect

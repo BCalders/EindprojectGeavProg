@@ -1,5 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Main;
 
+import be.uantwerpen.fti.ei.bc.Graphics.Audio.AudioPlayer;
 import be.uantwerpen.fti.ei.bc.Game.Main.GraphicsClass;
 import be.uantwerpen.fti.ei.bc.Graphics.GameState.Background;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.TextureHandler;
@@ -11,6 +12,7 @@ import java.awt.image.BufferedImage;
 public class J2dGraph extends GraphicsClass {
 
     public static final int WIDTH = 600, HEIGHT = 800;
+    public static final float SFXVOL = 1f, MVOL = 0.1f;
 
     public BufferedImage image;
     private final Graphics2D g2d;
@@ -19,6 +21,7 @@ public class J2dGraph extends GraphicsClass {
     private final JPanel panel;
 
     public static Background bg;
+    public static final AudioPlayer bgMusic = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Music/Background.wav", MVOL);
 
     public J2dGraph() {
         frame = new JFrame("Initializing");

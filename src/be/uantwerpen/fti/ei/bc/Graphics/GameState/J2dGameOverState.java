@@ -1,5 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Graphics.GameState;
 
+import be.uantwerpen.fti.ei.bc.Graphics.Audio.AudioPlayer;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameOverState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
@@ -9,13 +10,15 @@ import java.awt.*;
 
 public class J2dGameOverState extends GameOverState {
 
-    private J2dGraph gr;
+    private final J2dGraph gr;
 
     private Color titleColor;
     private Font titleFont, font;
 
     private boolean linesVisible;
     private int linesVisibleCount;
+
+    private static final AudioPlayer gameOver = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Player/Game Over.wav", J2dGraph.MVOL);
 
     public J2dGameOverState(J2dGraph graph, GameStateManager gsm) {
         super(gsm);
@@ -36,6 +39,8 @@ public class J2dGameOverState extends GameOverState {
 
         font = new Font("Arial", Font.PLAIN, 30);
 
+        J2dGraph.bgMusic.stop();
+        gameOver.play();
     }
 
     @Override

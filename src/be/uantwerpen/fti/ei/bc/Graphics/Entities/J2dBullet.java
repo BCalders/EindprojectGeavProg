@@ -1,20 +1,21 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Entities;
 
+import be.uantwerpen.fti.ei.bc.Graphics.Audio.AudioPlayer;
 import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class J2dBullet extends Bullet {
 
     private final J2dGraph graph;
 
-    private BufferedImage hitSprite;
+    private static final AudioPlayer shoot = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Bullets/shoot.wav", J2dGraph.SFXVOL);
 
     public J2dBullet(J2dGraph graph){
         super();
         this.graph = graph;
+        shoot.play();
     }
 
     @Override

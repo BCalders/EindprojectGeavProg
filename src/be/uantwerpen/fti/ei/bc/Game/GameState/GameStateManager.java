@@ -4,7 +4,6 @@ package be.uantwerpen.fti.ei.bc.Game.GameState;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameStateManager {

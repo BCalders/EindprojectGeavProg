@@ -42,6 +42,8 @@ public class J2dMenuState extends MenuState {
         icon = TextureHandler.getEnemyTextures().get(0)[0];
 
         J2dGraph.bg.setVector(0, 0.2);
+
+        J2dGraph.bgMusic.play();
     }
 
     @Override

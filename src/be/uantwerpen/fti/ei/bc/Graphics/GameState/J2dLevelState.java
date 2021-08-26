@@ -2,6 +2,7 @@ package be.uantwerpen.fti.ei.bc.Graphics.GameState;
 
 import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
+import be.uantwerpen.fti.ei.bc.Game.GameState.GameState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
@@ -29,6 +30,7 @@ public class J2dLevelState extends LevelState {
         super.init();
         J2dGraph.bg.setVector(0, 2);
         livesTexture = TextureHandler.getPlayershipTexture();
+
     }
 
     @Override

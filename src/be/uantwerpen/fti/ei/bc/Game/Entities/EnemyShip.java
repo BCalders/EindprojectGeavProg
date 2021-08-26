@@ -1,5 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Game.Entities;
 
+
 public abstract class EnemyShip extends Entity {
 
     protected boolean isDead;

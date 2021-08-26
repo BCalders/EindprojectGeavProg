@@ -1,5 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Graphics.GameState;
 
+import be.uantwerpen.fti.ei.bc.Graphics.Audio.AudioPlayer;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.WinState;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
@@ -16,6 +17,8 @@ public class J2dWinState extends WinState {
 
     private boolean linesVisible, isBlinking;
     private int linesVisibleCount, blinkingCounter;
+
+    private static final AudioPlayer victory = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Player/victory.wav", J2dGraph.SFXVOL);
 
     public J2dWinState(J2dGraph graph, GameStateManager gsm) {
         super(gsm);
@@ -38,7 +41,8 @@ public class J2dWinState extends WinState {
 
         font = new Font("Arial", Font.PLAIN, 30);
 
-
+        J2dGraph.bgMusic.stop();
+        victory.play();
     }
 
     @Override
