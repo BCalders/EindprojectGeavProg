@@ -4,7 +4,7 @@ import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
 public abstract class GameOverState extends GameState {
 
-    protected String reason = "";
+    protected String reason = null;
 
     public GameOverState(GameStateManager gsm) {
         super(gsm);
@@ -16,8 +16,8 @@ public abstract class GameOverState extends GameState {
         int lives = scores[1];
         int time = scores[2];
 
-        if (lives <= 0) reason = "was Destroyed";
-        else if (time <= 0) reason = "ran out of Time";
+        if (lives <= 0) reason = "they were Destroyed";
+        else if (time <= 0) reason = "they ran out of Time";
         else reason = "Aliens reached destination";
     }
 

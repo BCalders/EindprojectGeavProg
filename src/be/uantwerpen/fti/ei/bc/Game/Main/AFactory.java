@@ -21,7 +21,7 @@ public abstract class AFactory {
 
     public abstract PlayerShip createPlayerShip();
 
-    public abstract EnemyShip createEnemyShip();
+    public abstract EnemyShip createEnemyShip(int type);
 
     public abstract Bullet createBullet();
 

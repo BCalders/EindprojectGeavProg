@@ -14,13 +14,14 @@ The game is an own interpretation of the well know game "Space Invaders" in whic
     1. _Space_ for firing
     1. _'P'_ for pausing the game 
 1. __DEBUGGING ONLY__
-    1. Press _Shift + Enter_ in game to win
-    1. Press _CTRL + Enter_ in game to lose
+    1. Press _Shift + Enter_ in game to lose
+    1. Press _CTRL + Enter_ in game to win
 ## Roadmap
 To be added:
 - [x] Pause state
 - [x] Backgrounds
-- [ ] Graphics Handler/Sprites
+- [ ] Config File
+- [x] Graphics Handler/Sprites
 - [ ] Highscoring System
 - [ ] Highscore Page
 - [ ] Sounds

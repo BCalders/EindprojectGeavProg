@@ -45,8 +45,8 @@ public class J2dFactory extends AFactory {
     }
 
     @Override
-    public EnemyShip createEnemyShip() {
-        return new J2dEnemyShip(graph);
+    public EnemyShip createEnemyShip(int type) {
+        return new J2dEnemyShip(graph, type);
     }
 
     @Override

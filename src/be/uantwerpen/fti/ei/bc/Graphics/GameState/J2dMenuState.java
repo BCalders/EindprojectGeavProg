@@ -2,9 +2,11 @@ package be.uantwerpen.fti.ei.bc.Graphics.GameState;
 
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.MenuState;
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.TextureHandler;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class J2dMenuState extends MenuState {
 
@@ -15,6 +17,8 @@ public class J2dMenuState extends MenuState {
 
     private boolean isBlinking;
     private int blinkingCounter;
+
+    private BufferedImage icon;
 
     public J2dMenuState(J2dGraph gr, GameStateManager gsm) {
         super(gsm);
@@ -35,6 +39,8 @@ public class J2dMenuState extends MenuState {
         selectFont = new Font("Arial", Font.BOLD, 30);
         selectColor = titleColor.darker().darker();
 
+        icon = TextureHandler.getEnemyTextures().get(0)[0];
+
         J2dGraph.bg.setVector(0, 0.2);
     }
 
@@ -45,7 +51,7 @@ public class J2dMenuState extends MenuState {
 
         blinkingCounter++;
 
-        if (blinkingCounter > 30) {
+        if (blinkingCounter > 20) {
             isBlinking = !isBlinking;
             blinkingCounter = 0;
         }
@@ -78,7 +84,7 @@ public class J2dMenuState extends MenuState {
                 else g2d.setColor(selectColor);
 
                 g2d.setStroke(new BasicStroke(2));
-                g2d.fillRect(titleXLocation - 10 - 25, choiceYLocation - 23, 25, 25);                    //draw playership icon, nog aan te vullen
+                g2d.drawImage(icon, titleXLocation - 10 - 50, choiceYLocation - 23, 50, 25, null);
             } else {
                 g2d.setFont(font);
                 g2d.setColor(selectColor);

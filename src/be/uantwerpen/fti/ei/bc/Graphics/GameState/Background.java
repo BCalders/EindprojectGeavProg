@@ -1,5 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Graphics.GameState;
 
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.TextureHandler;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import javax.imageio.ImageIO;
@@ -17,13 +18,9 @@ public class Background {
     private static double x, y;
     private double dx, dy;
 
-    public Background(J2dGraph gr, String s){
+    public Background(J2dGraph gr){
         this.gr = gr;
-        try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(s)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        image = TextureHandler.backgroundTexture;
     }
 
     public void setVector(double dx, double dy){

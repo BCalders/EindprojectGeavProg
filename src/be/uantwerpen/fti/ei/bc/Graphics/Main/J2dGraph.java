@@ -2,6 +2,7 @@ package be.uantwerpen.fti.ei.bc.Graphics.Main;
 
 import be.uantwerpen.fti.ei.bc.Game.Main.GraphicsClass;
 import be.uantwerpen.fti.ei.bc.Graphics.GameState.Background;
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.TextureHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,9 +41,12 @@ public class J2dGraph extends GraphicsClass {
         image = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_4BYTE_ABGR_PRE);
         g2d = image.createGraphics();
 
+        //load textures into handler
+        new TextureHandler();
+
         //init background
         try {
-            bg = new Background(this, "/Backgrounds/background.png");
+            bg = new Background(this);
             bg.setVector(0, 0.2);
 
         } catch (Exception e) {
@@ -68,11 +72,6 @@ public class J2dGraph extends GraphicsClass {
     @Override
     public double reformY(double y) {
         return (y / 8) * HEIGHT;
-    }
-
-    @Override
-    public void setFps(int fps, int ms) {
-        frame.setTitle("Space Invaders 4-Geav Prog Fps: " + fps + " Wait time: " + ms + " ms");
     }
 
     public Graphics2D getG2d() {
