@@ -74,11 +74,6 @@ public class J2dGraph extends GraphicsClass {
         return (y / 8) * HEIGHT;
     }
 
-    @Override
-    public void setFps(int fps, int ms) {
-        frame.setTitle("Space Invaders 4-Geav Prog Fps: " + fps + " Wait time: " + ms + " ms");
-    }
-
     public Graphics2D getG2d() {
         return g2d;
     }

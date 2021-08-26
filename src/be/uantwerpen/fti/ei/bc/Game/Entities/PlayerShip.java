@@ -60,7 +60,6 @@ public abstract class PlayerShip extends Entity {
     }
 
     public void fire() {
-        System.out.println("PLAYER SHOOT");
         fire = 0;
     }
 
