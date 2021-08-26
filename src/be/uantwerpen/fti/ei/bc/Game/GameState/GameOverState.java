@@ -4,7 +4,7 @@ import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
 public abstract class GameOverState extends GameState {
 
-    protected String reason = "";
+    protected String reason = null;
 
     public GameOverState(GameStateManager gsm) {
         super(gsm);

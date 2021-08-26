@@ -77,16 +77,11 @@ public class J2dGameOverState extends GameOverState {
         g2d.drawString(reason, reason2Xlocation, titleYLocation + 90);
 
         //Draw return
-        if (linesVisible) {
-            String returnString = "-- Press ENTER to continue --";
-            int returnXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString)) / 2;
-            int returnYLocation = (J2dGraph.HEIGHT / 4) * 3;
-            g2d.drawString(returnString, returnXLocation, returnYLocation);
-        } else {
-            String returnString = "Press ENTER to continue";
-            int returnXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString)) / 2;
-            int returnYLocation = (J2dGraph.HEIGHT / 4) * 3;
-            g2d.drawString(returnString, returnXLocation, returnYLocation);
-        }
+        String returnString= "Press ENTER to continue";
+        if (linesVisible)
+            returnString = "-- Press ENTER to continue --";
+        int returnXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString)) / 2;
+        int returnYLocation = (J2dGraph.HEIGHT / 4) * 3;
+        g2d.drawString(returnString, returnXLocation, returnYLocation);
     }
 }

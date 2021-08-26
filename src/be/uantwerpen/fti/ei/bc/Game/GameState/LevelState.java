@@ -62,9 +62,9 @@ public abstract class LevelState extends GameState {
 
     protected void spawnFormation() {
         for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 10; j++) {
-                EnemyShip e = f.createEnemyShip();
-                e.setPosition(-3 + 0.4 * j, 3.6 - 0.4 * i);
+            for (int j = 0; j < 6; j++) {
+                EnemyShip e = f.createEnemyShip(i);
+                e.setPosition(-3 + 0.7 * j, 3.6 - 0.4 * i);
                 enemies.add(e);
             }
         }
@@ -137,7 +137,7 @@ public abstract class LevelState extends GameState {
                 continue;
             }
 
-            int shootRNG = 2000 - (40 * (40 - enemies.size()));
+            int shootRNG = 1900 - (80 * (24 - enemies.size()));
             if (r.nextInt(shootRNG) == 0) {
                 enemyShoot(tempE);
             }
@@ -168,7 +168,7 @@ public abstract class LevelState extends GameState {
         if (enemies.isEmpty()) win();
 
         //end game if dead or time runs out
-        if (100 - time <= 0 || lives <= 0) {
+        if (lives <= 0) {    //100 - time <= 0
             lose();
         }
 

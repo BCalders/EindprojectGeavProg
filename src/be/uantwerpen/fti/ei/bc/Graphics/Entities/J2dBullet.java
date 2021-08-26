@@ -33,8 +33,8 @@ public class J2dBullet extends Bullet {
 
         //Test generation
         if(hit) g2d.setColor(Color.RED);
-        else if(isEnemyBullet) g2d.setColor(new Color(255, 127,127));
-        else g2d.setColor(new Color(127, 127, 255));
+        else if(isEnemyBullet) g2d.setColor(new Color(255, 64,64));
+        else g2d.setColor(new Color(64, 255, 64));
         g2d.fillRect(xCoord, yCoord, width2, height2);
     }
 }

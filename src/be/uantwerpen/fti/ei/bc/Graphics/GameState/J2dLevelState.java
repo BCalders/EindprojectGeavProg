@@ -5,13 +5,18 @@ import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
+import be.uantwerpen.fti.ei.bc.Graphics.Entities.J2dEnemyShip;
+import be.uantwerpen.fti.ei.bc.Graphics.Handlers.TextureHandler;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class J2dLevelState extends LevelState {
 
     private final J2dGraph gr;
+
+    private BufferedImage livesTexture;
 
     public J2dLevelState(J2dGraph graph, GameStateManager gsm, AFactory f) {
         super(gsm, f);
@@ -20,9 +25,10 @@ public class J2dLevelState extends LevelState {
 
     @Override
     public void init() {
+        J2dEnemyShip.loadsprites();
         super.init();
-
         J2dGraph.bg.setVector(0, 2);
+        livesTexture = TextureHandler.getPlayershipTexture();
     }
 
     @Override
@@ -71,7 +77,7 @@ public class J2dLevelState extends LevelState {
         g2d.setColor(Color.GREEN);
 
         for (int i = 0; i < lives; i++) {
-            g2d.fillRect(J2dGraph.WIDTH - ((int) gr.reformX(ps.getcWidth()) + 10) * (3 - i), 7, (int) gr.reformX(ps.getcWidth()), (int) gr.reformY(ps.getcHeight()));
+            g2d.drawImage(livesTexture, J2dGraph.WIDTH - ((int) gr.reformX(ps.getcWidth()) + 13) * (3 - i), 7, (int) gr.reformX(ps.getWidth()), (int) gr.reformY(ps.getHeight()), null);
         }
 
     }
