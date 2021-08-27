@@ -7,6 +7,10 @@ public abstract class PlayerShip extends Entity {
 
     protected boolean isShooting = false;
 
+    private boolean isShielded = false;
+    private boolean isDouble = false;
+    private long bonustimer;
+
     private int fire;
     private final int fireCost;
 
@@ -52,6 +56,9 @@ public abstract class PlayerShip extends Entity {
 
         //check done flinching
         if (isFlinching && (System.currentTimeMillis() - flinchtimer) > 1000) isFlinching = false;
+
+        //bonustime
+        if ((isDouble || isShielded) && (System.currentTimeMillis() - bonustimer) > 5000) stopBonus();
     }
 
     public abstract void draw();
@@ -68,5 +75,26 @@ public abstract class PlayerShip extends Entity {
         if (isFlinching) return;
         isFlinching = true;
         flinchtimer = System.currentTimeMillis();
+    }
+
+    public void bonus(int kind) {
+        stopBonus();
+        System.out.println("bonus: " + kind);
+        if (kind == 0) isDouble = true;
+        if (kind == 1) isShielded = true;
+        bonustimer = System.currentTimeMillis();
+    }
+
+    public void stopBonus() {
+        isShielded = false;
+        isDouble = false;
+    }
+
+    public boolean isShielded() {
+        return isShielded;
+    }
+
+    public boolean isDouble() {
+        return isDouble;
     }
 }

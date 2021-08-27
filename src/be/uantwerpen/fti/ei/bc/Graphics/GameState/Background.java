@@ -18,29 +18,29 @@ public class Background {
     private static double x, y;
     private double dx, dy;
 
-    public Background(J2dGraph gr){
+    public Background(J2dGraph gr) {
         this.gr = gr;
         image = TextureHandler.backgroundTexture;
     }
 
-    public void setVector(double dx, double dy){
+    public void setVector(double dx, double dy) {
         this.dx = dx;
         this.dy = dy;
     }
 
-    public void update(){
+    public void update() {
         x = (x + dx) % J2dGraph.WIDTH;
         y = (y + dy) % J2dGraph.HEIGHT;
     }
 
-    public void draw(){
+    public void draw() {
         Graphics2D g2d = gr.getG2d();
-        g2d.drawImage(image, (int)x, (int)y, null);
+        g2d.drawImage(image, (int) x, (int) y, J2dGraph.WIDTH, J2dGraph.HEIGHT, null);
 
-        if(y<0)
-            g2d.drawImage(image, (int)x, (int)y + J2dGraph.HEIGHT ,null);
-        if(y>0)
-            g2d.drawImage(image, (int)x, (int)y - J2dGraph.HEIGHT,null);
+        if (y < 0)
+            g2d.drawImage(image, (int) x, (int) y + J2dGraph.HEIGHT, J2dGraph.WIDTH, J2dGraph.HEIGHT, null);
+        if (y > 0)
+            g2d.drawImage(image, (int) x, (int) y - J2dGraph.HEIGHT, J2dGraph.WIDTH, J2dGraph.HEIGHT, null);
 
     }
 }

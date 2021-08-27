@@ -12,7 +12,7 @@ public class J2dWinState extends WinState {
     private final J2dGraph gr;
 
 
-    private Color titleColor, selectColor;
+    private Color titleColor, selectColor, winColor, winColorDarker;
     private Font titleFont, font;
 
     private boolean linesVisible, isBlinking;
@@ -35,9 +35,11 @@ public class J2dWinState extends WinState {
         J2dGraph.bg.setVector(0, 0.2);
 
         titleColor = new Color(0, 255, 180);
+        winColor = new Color(255, 128, 180);
         titleFont = new Font("Century Gothic", Font.BOLD, 60);
 
         selectColor = titleColor.darker().darker();
+        winColorDarker = winColor.darker().darker();
 
         font = new Font("Arial", Font.PLAIN, 30);
 
@@ -75,8 +77,8 @@ public class J2dWinState extends WinState {
 
         //draw highscore
         if (isHighscore) {
-            if (isBlinking) g2d.setColor(titleColor);
-            else g2d.setColor(selectColor);
+            if (isBlinking) g2d.setColor(winColor);
+            else g2d.setColor(winColorDarker);
             g2d.setFont(font);
             g2d.drawString(hiscore, (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(hiscore)) / 2 , J2dGraph.HEIGHT / 8);
         }

@@ -1,12 +1,14 @@
 package be.uantwerpen.fti.ei.bc.Graphics.GameState;
 
+import be.uantwerpen.fti.ei.bc.Game.Entities.Bonus;
 import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
-import be.uantwerpen.fti.ei.bc.Game.GameState.GameState;
 import be.uantwerpen.fti.ei.bc.Game.GameState.GameStateManager;
 import be.uantwerpen.fti.ei.bc.Game.GameState.LevelState;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
+import be.uantwerpen.fti.ei.bc.Graphics.Entities.J2dBonus;
 import be.uantwerpen.fti.ei.bc.Graphics.Entities.J2dEnemyShip;
+import be.uantwerpen.fti.ei.bc.Graphics.Entities.J2dPlayerShip;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.TextureHandler;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
@@ -27,9 +29,11 @@ public class J2dLevelState extends LevelState {
     @Override
     public void init() {
         J2dEnemyShip.loadsprites();
+        J2dBonus.loadsprites();
+        J2dPlayerShip.loadsprites();
         super.init();
         J2dGraph.bg.setVector(0, 2);
-        livesTexture = TextureHandler.getPlayershipTexture();
+        livesTexture = TextureHandler.getPlayershipTextures()[3];
 
     }
 
@@ -59,6 +63,11 @@ public class J2dLevelState extends LevelState {
             i.draw();
         }
 
+        //draw bonusses
+        for(Bonus i : bonusses){
+            i.draw();
+        }
+
         //draw HUD
         int fontSize = 25;
         Color hudColor = new Color(0, 255, 180);
@@ -81,7 +90,7 @@ public class J2dLevelState extends LevelState {
         g2d.setColor(Color.GREEN);
 
         for (int i = 0; i < lives; i++) {
-            g2d.drawImage(TextureHandler.colorSprite(livesTexture, hudColor), J2dGraph.WIDTH - ((int) gr.reformX(ps.getcWidth()) + 13) * (3 - i), 7, (int) gr.reformX(ps.getWidth()), (int) gr.reformY(ps.getHeight()), null);
+            g2d.drawImage(livesTexture, J2dGraph.WIDTH - ((int) gr.reformX(ps.getcWidth()) + 13) * (3 - i), 7, (int) gr.reformX(ps.getWidth()), (int) gr.reformY(ps.getHeight()), null);
         }
 
     }

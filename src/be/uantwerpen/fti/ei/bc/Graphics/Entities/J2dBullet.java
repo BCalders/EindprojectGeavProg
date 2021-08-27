@@ -5,6 +5,7 @@ import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class J2dBullet extends Bullet {
 
@@ -19,11 +20,6 @@ public class J2dBullet extends Bullet {
     }
 
     @Override
-    public void update() {
-        super.update();
-    }
-
-    @Override
     public void draw() {
         Graphics2D g2d = graph.getG2d();
 
@@ -32,7 +28,7 @@ public class J2dBullet extends Bullet {
         int width2 = (int) graph.reformX(width);
         int height2 = (int) graph.reformY(height);
 
-        //Test generation
+        //Draw bullet
         if(hit) g2d.setColor(Color.RED);
         else if(isEnemyBullet) g2d.setColor(new Color(255, 64,64));
         else g2d.setColor(new Color(64, 255, 64));

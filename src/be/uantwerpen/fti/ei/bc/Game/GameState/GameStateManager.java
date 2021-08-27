@@ -13,6 +13,7 @@ public class GameStateManager {
     private int currentState;
 
     public static final int MENUSTATE = 0, LEVELSTATE = 1, WINSTATE = 2, GAMEOVERSTATE = 3, PAUSED = 4;
+
     protected int[] scores;
 
 

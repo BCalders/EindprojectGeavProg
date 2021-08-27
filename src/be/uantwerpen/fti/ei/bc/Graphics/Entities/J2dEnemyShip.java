@@ -55,17 +55,7 @@ public class J2dEnemyShip extends EnemyShip {
         int cwidth2 = (int) graph.reformX(cWidth);
         int cheight2 = (int) graph.reformY(cHeight);
 
-//        //Test generation
-//        g2d.setColor(Color.BLUE);
-//        g2d.fillRect(xCoord, yCoord, width2, height2);
-//
-//        //draw collision box
-//        g2d.setColor(Color.YELLOW);
-//        g2d.fillRect(xCCoord, yCCoord, cwidth2, cheight2);
-
-
         //draw enemyship
-
         g2d.drawImage(animation.getFrame(), xCoord, yCoord, width2, height2, null);
     }
 }

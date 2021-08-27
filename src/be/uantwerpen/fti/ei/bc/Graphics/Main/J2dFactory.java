@@ -1,9 +1,11 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Main;
 
+import be.uantwerpen.fti.ei.bc.Game.Entities.Bonus;
 import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
 import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
 import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
 import be.uantwerpen.fti.ei.bc.Game.GameState.*;
+import be.uantwerpen.fti.ei.bc.Graphics.Entities.J2dBonus;
 import be.uantwerpen.fti.ei.bc.Graphics.GameState.*;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
@@ -68,4 +70,10 @@ public class J2dFactory extends AFactory {
     public PauseState createPauseState(GameStateManager gsm) {
         return new J2dPauseState(graph, gsm);
     }
+
+    @Override
+    public Bonus createBonus(int rInt) {
+        return new J2dBonus(graph, rInt);
+    }
+
 }

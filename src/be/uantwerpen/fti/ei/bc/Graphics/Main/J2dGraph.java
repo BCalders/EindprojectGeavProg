@@ -11,8 +11,8 @@ import java.awt.image.BufferedImage;
 
 public class J2dGraph extends GraphicsClass {
 
-    public static final int WIDTH = 600, HEIGHT = 800;
-    public static final float SFXVOL = 1f, MVOL = 0.1f;
+    public static int WIDTH, HEIGHT;
+    public static float SFXVOL, MVOL;
 
     public BufferedImage image;
     private final Graphics2D g2d;
@@ -21,9 +21,14 @@ public class J2dGraph extends GraphicsClass {
     private final JPanel panel;
 
     public static Background bg;
-    public static final AudioPlayer bgMusic = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Music/Background.wav", MVOL);
+    public static AudioPlayer bgMusic;
 
     public J2dGraph() {
+        //Loading ConfigFile
+        ConfigLoader cload = new ConfigLoader();
+        Config config = cload.getConfig();
+        setConfig(config);
+        
         frame = new JFrame("Initializing");
         panel = new JPanel(true) {
             public void paintComponent(Graphics g) {
@@ -55,6 +60,14 @@ public class J2dGraph extends GraphicsClass {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        bgMusic = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Music/Background.wav", MVOL);
+    }
+
+    private void setConfig(Config config) {
+        WIDTH = config.getWIDTH();
+        HEIGHT = config.getHEIGHT();
+        SFXVOL = config.getSFXVOL();
+        MVOL = config.getMVOL();
     }
 
     @Override

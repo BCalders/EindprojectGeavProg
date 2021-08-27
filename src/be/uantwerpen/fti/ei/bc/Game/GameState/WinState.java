@@ -22,7 +22,7 @@ public abstract class WinState extends GameState {
         BufferedReader reader = null;
 
         try {
-            readFile = new FileReader("src/be/uantwerpen/fti/ei/bc/Resources/Highscores/hiScore.dat");
+            readFile = new FileReader("src/be/uantwerpen/fti/ei/bc/Resources/Data/hiScore.dat");
             reader = new BufferedReader(readFile);
             return Integer.parseInt(reader.readLine());
         } catch (Exception e) {
@@ -39,7 +39,7 @@ public abstract class WinState extends GameState {
     }
 
     private void setHiScore(int score) {
-        File scoreFile = new File("src/be/uantwerpen/fti/ei/bc/Resources/Highscores/hiScore.dat");
+        File scoreFile = new File("src/be/uantwerpen/fti/ei/bc/Resources/Data/hiScore.dat");
         if (!scoreFile.exists()) {
             try {
                 scoreFile.createNewFile();

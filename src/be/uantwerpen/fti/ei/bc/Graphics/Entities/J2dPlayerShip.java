@@ -11,14 +11,18 @@ import java.awt.image.BufferedImage;
 public class J2dPlayerShip extends PlayerShip {
 
     private final J2dGraph graph;
-    private final BufferedImage sprite;
+    private static BufferedImage[] sprites;
+    private final Color doubleColor = new Color(255, 255, 128), shieldColor = new Color(128, 128, 255);
 
     private static final AudioPlayer playerHit = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Player/PlayerHit.wav", J2dGraph.SFXVOL);
 
     public J2dPlayerShip(J2dGraph graph) {
         super();
         this.graph = graph;
-        sprite = TextureHandler.getPlayershipTexture();
+    }
+
+    public static void loadsprites() {
+        sprites = TextureHandler.getPlayershipTextures();
     }
 
     @Override
@@ -50,11 +54,13 @@ public class J2dPlayerShip extends PlayerShip {
 
         if (isFlinching) {
             long elapsed = (System.currentTimeMillis() - flinchtimer);
-            if (elapsed / 50 % 2 == 0) {
-
-                return;
-            }
+            if (elapsed / 50 % 2 == 0) return;
         }
-        g2d.drawImage(sprite, xCoord, yCoord, width2, height2, null);
+
+        if (isDouble())
+            g2d.drawImage(sprites[0], xCoord, yCoord, width2, height2, null);
+        else if (isShielded())
+            g2d.drawImage(sprites[1], xCoord, yCoord, width2, height2, null);
+        else g2d.drawImage(sprites[2], xCoord, yCoord, width2, height2, null);
     }
 }

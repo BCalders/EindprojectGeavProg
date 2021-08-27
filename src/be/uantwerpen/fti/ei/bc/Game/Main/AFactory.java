@@ -1,8 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Game.Main;
 
-import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
-import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
-import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
+import be.uantwerpen.fti.ei.bc.Game.Entities.*;
 import be.uantwerpen.fti.ei.bc.Game.GameState.*;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
@@ -30,4 +28,6 @@ public abstract class AFactory {
     public abstract GameState createGameOverState(GameStateManager gsm);
 
     public abstract PauseState createPauseState(GameStateManager gsm);
+
+    public abstract Bonus createBonus(int rInt);
 }

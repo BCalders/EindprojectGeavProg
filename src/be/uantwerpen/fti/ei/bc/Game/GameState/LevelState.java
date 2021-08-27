@@ -1,8 +1,6 @@
 package be.uantwerpen.fti.ei.bc.Game.GameState;
 
-import be.uantwerpen.fti.ei.bc.Game.Entities.Bullet;
-import be.uantwerpen.fti.ei.bc.Game.Entities.EnemyShip;
-import be.uantwerpen.fti.ei.bc.Game.Entities.PlayerShip;
+import be.uantwerpen.fti.ei.bc.Game.Entities.*;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 import be.uantwerpen.fti.ei.bc.Game.Main.AFactory;
 
@@ -25,6 +23,7 @@ public abstract class LevelState extends GameState {
     protected PlayerShip ps;
     protected ArrayList<EnemyShip> enemies;
     protected ArrayList<Bullet> bullets;
+    protected ArrayList<Bonus> bonusses;
 
     public LevelState(GameStateManager gsm, AFactory f) {
         super(gsm);
@@ -42,9 +41,9 @@ public abstract class LevelState extends GameState {
         gsm.setState(GameStateManager.WINSTATE);
     }
 
-    private void kill(EnemyShip e) {
+    private void kill(EnemyShip e, int multiplyer) {
         e.kill();
-        score += 200;
+        score += 200 * multiplyer;
     }
 
     public void playerFire() {
@@ -63,6 +62,12 @@ public abstract class LevelState extends GameState {
         bullets.add(b);
     }
 
+    public void spawnBonus(int kind, int xLoc) {
+        Bonus b = f.createBonus(kind);
+        b.setPosition((xLoc - 27) / 10.0, 3.9);
+        bonusses.add(b);
+    }
+
     protected void spawnFormation() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 6; j++) {
@@ -73,21 +78,20 @@ public abstract class LevelState extends GameState {
         }
     }
 
-    private int readHiScore(){
+    private int readHiScore() {
 
         FileReader readFile;
         BufferedReader reader = null;
 
         try {
-            readFile = new FileReader("src/be/uantwerpen/fti/ei/bc/Resources/Highscores/hiScore.dat");
+            readFile = new FileReader("src/be/uantwerpen/fti/ei/bc/Resources/Data/hiScore.dat");
             reader = new BufferedReader(readFile);
             return Integer.parseInt(reader.readLine());
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("File could not be read!");
             return -1;
-        }
-        finally {
+        } finally {
             try {
                 reader.close();
             } catch (IOException e) {
@@ -115,8 +119,9 @@ public abstract class LevelState extends GameState {
         this.ps = f.createPlayerShip();
         ps.setPosition(0, -3.7);
 
-        //init bullets
+        //init arrays
         bullets = new ArrayList<>();
+        bonusses = new ArrayList<>();
 
         //get hiScore
         hiScore = readHiScore();
@@ -126,6 +131,7 @@ public abstract class LevelState extends GameState {
     public void update() {
         time = (int) Math.ceil(System.currentTimeMillis() - levelStartTime) / 1000;
         Random r = new Random();
+        int scoreMultiplyer = ps.isDouble() ? 2 : 1;
 
         //check for enemies outside playfield
         for (EnemyShip i : enemies) {
@@ -155,7 +161,7 @@ public abstract class LevelState extends GameState {
 
             for (int j = 0; j < bullets.size(); j++) {
                 if (tempE.intersects(bullets.get(j)) && !bullets.get(j).isEnemyBullet()) {
-                    kill(tempE);
+                    kill(tempE, scoreMultiplyer);
                     bullets.remove(j);
                     j--;
                 }
@@ -184,13 +190,49 @@ public abstract class LevelState extends GameState {
 
             if (tempB.intersects(ps) && tempB.isEnemyBullet() && !ps.isFlinching()) {
                 tempB.setHit();
-                ps.hit();
-                lives--;
+                if (!ps.isShielded()) {
+                    ps.hit();
+                    lives--;
+                    score -= 300;
+                }
+                ps.stopBonus();
             }
 
             if (tempB.shouldRemove()) {
                 bullets.remove(i);
                 i--;
+            }
+        }
+
+        //Generate Bonus
+        int bonusRNG = 2500;
+        int rInt = r.nextInt(bonusRNG);
+        if (rInt < 4) {
+            spawnBonus(rInt, r.nextInt(54));
+            f.createBonus(rInt);
+        }
+
+        //update bonusses
+        for (int i = 0; i < bonusses.size(); i++) {
+            Bonus tempBo = bonusses.get(i);
+            tempBo.update();
+
+            if (tempBo.intersects(ps)) {
+                tempBo.setHit();
+                score += 1000 * scoreMultiplyer;
+                ps.bonus(tempBo.getKind());
+                if ((tempBo.getKind() == 2) && lives < 3) lives++;
+                if (tempBo.getKind() == 3) {
+                    for (EnemyShip j: enemies) {
+                        j.setPosition(j.getX(), j.getY() + 0.5);
+                    }
+                }
+            }
+
+            if (tempBo.shouldRemove()) {
+                bonusses.remove(i);
+                i--;
+
             }
         }
 
@@ -203,7 +245,7 @@ public abstract class LevelState extends GameState {
         }
 
         //highscore is lower than actual score
-        if(hiScore < score) hiScore = score;
+        if (hiScore < score) hiScore = score;
 
     }
 
