@@ -1,11 +1,22 @@
 package be.uantwerpen.fti.ei.bc.Game.Entities;
 
-
+/**
+ * Enemies are to be killed to win the game
+ *
+ * @author Bas Calders
+ */
 public abstract class EnemyShip extends Entity {
-
+    //enemy state boolean
     protected boolean isDead;
+
+    //enemy type int
     protected int type;
 
+    /**
+     * EnemyShip constructor
+     *
+     * @param type sets type of enemyship
+     */
     public EnemyShip(int type) {
         this.width = 0.6;
         this.height = 0.3;
@@ -34,14 +45,25 @@ public abstract class EnemyShip extends Entity {
             this.type = 0;
     }
 
+    /**
+     * Set isDead boolean
+     */
     public void kill() {
         isDead = true;
     }
 
+    /**
+     * update Enemyship
+     */
     public void update() {
         x += dx * speed;
     }
 
+    /**
+     * detect collision with right or left edge
+     *
+     * @return if collision with edge
+     */
     public boolean detectEdge() {
         double xTemp = x + dx * speed;
         if (dx < 0) {

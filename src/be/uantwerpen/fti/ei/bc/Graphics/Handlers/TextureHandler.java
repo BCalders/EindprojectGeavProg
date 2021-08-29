@@ -1,17 +1,24 @@
 package be.uantwerpen.fti.ei.bc.Graphics.Handlers;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.Image;
 import java.awt.image.*;
 import java.io.IOException;;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * class to load al textures in advance
+ *
+ * @author Bas Calders
+ */
 public class TextureHandler {
 
+    //sprites and background
     public static BufferedImage backgroundTexture, spriteSheet;
 
+    /**
+     * texturehandler constructor
+     */
     public TextureHandler() {
         try {
             backgroundTexture = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Backgrounds/background.png")));
@@ -21,6 +28,11 @@ public class TextureHandler {
         }
     }
 
+    /**
+     * return playership textures
+     *
+     * @return playership textures array
+     */
     public static BufferedImage[] getPlayershipTextures() {
         BufferedImage[] b = new BufferedImage[4];
         for (int i = 0; i < 4; i++) {
@@ -29,6 +41,11 @@ public class TextureHandler {
         return b;
     }
 
+    /**
+     * return bonus textures
+     *
+     * @return bonus texture array
+     */
     public static BufferedImage[] getBonusTextures() {
         BufferedImage[] b = new BufferedImage[4];
         for (int i = 0; i < 4; i++) {
@@ -37,6 +54,11 @@ public class TextureHandler {
         return b;
     }
 
+    /**
+     * returns enemy animations in list of arrays
+     *
+     * @return list of enemy animation arrays
+     */
     public static ArrayList<BufferedImage[]> getEnemyTextures() {
         ArrayList<BufferedImage[]> eSprites = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
@@ -49,21 +71,4 @@ public class TextureHandler {
 
         return eSprites;
     }
-
-//    public static Image colorSprite(BufferedImage img, Color color) {
-//        System.out.println(color);
-//        int marker = new Color(255, 255, 255).getRGB() | 0xFF000000;
-//        ImageFilter imageFilter = new RGBImageFilter() {
-//            @Override
-//            public int filterRGB(int x, int y, int rgb) {
-//                if ((rgb | 0xFF000000) == marker) {
-//                    return rgb;
-//                }
-//                return 0xFF000000 | color.getRGB();
-//            }
-//        };
-//        ImageProducer ip = new FilteredImageSource(img.getSource(), imageFilter);
-//        return Toolkit.getDefaultToolkit().createImage(ip);
-//    }
-
 }

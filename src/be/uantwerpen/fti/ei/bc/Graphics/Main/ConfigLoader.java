@@ -4,9 +4,19 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * config file loader
+ *
+ * @author Bas Calders
+ */
 public class ConfigLoader {
 
-    public Config getConfig() {
+    /**
+     * load new config from file
+     *
+     * @return config
+     */
+    public static Config getConfig() {
         Properties prop = new Properties();
         String filePath = "src/be/uantwerpen/fti/ei/bc/Resources/Data/config.properties";
 

@@ -2,17 +2,31 @@ package be.uantwerpen.fti.ei.bc.Game.GameState;
 
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
-public abstract class PauseState extends GameState{
-
+/**
+ * state when paused
+ *
+ * @author Bas Calders
+ */
+public abstract class PauseState extends GameState {
+    //paused gamestate
     protected GameState pausedState;
 
-    public PauseState(GameStateManager gsm){
+    /**
+     * pausestate constructor
+     *
+     * @param gsm instance of gamestatemanager
+     */
+    public PauseState(GameStateManager gsm) {
         super(gsm);
     }
 
-    public void pause(GameState pausedState){
+    /**
+     * pause a state
+     *
+     * @param pausedState state to be paused
+     */
+    public void pause(GameState pausedState) {
         this.pausedState = pausedState;
-
     }
 
     @Override
@@ -22,15 +36,20 @@ public abstract class PauseState extends GameState{
 
     @Override
     public void update() {
-        //No updates to keep game saved
+        //No updates
     }
 
     @Override
     public abstract void draw();
 
+    /**
+     * get inputs
+     *
+     * @param key inputted key
+     */
     @Override
     public void input(KeyHandler key) {
-        if(key.pause.isClicked()){
+        if (key.pause.isClicked()) {
             gsm.continueState(GameStateManager.LEVELSTATE);
         }
     }

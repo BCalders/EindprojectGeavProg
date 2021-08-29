@@ -2,19 +2,25 @@ package be.uantwerpen.fti.ei.bc.Graphics.Entities;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * Animation class backbone of animation rendering
+ *
+ * @author Bas Calders
+ */
 public class Animation {
 
+    //frame variables
     private BufferedImage[] frames;
     private int currentFrame;
 
+    //time variables
     private long startTime;
     private long delay;
 
-    private boolean playedOnce;
-
-    public Animation() {
-        playedOnce = false;
-    }
+    /**
+     * animation constructor
+     */
+    public Animation() {}
 
     public BufferedImage getFrame() {
         return frames[currentFrame];
@@ -24,15 +30,10 @@ public class Animation {
         return currentFrame;
     }
 
-    public boolean hasPlayedOnce() {
-        return playedOnce;
-    }
-
     public void setFrames(BufferedImage[] frames) {
         this.frames = frames;
         currentFrame = 0;
         startTime = System.currentTimeMillis();
-        playedOnce = false;
     }
 
     public void setDelay(int d) {
@@ -43,6 +44,9 @@ public class Animation {
         this.currentFrame = i;
     }
 
+    /**
+     * update animation
+     */
     public void update() {
         if (delay == -1) return;
 
@@ -53,7 +57,6 @@ public class Animation {
         }
         if (currentFrame == frames.length) {
             currentFrame = 0;
-            playedOnce = true;
         }
     }
 

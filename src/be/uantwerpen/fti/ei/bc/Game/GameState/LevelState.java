@@ -10,42 +10,71 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Main game class, all gameplay is handled in this class
+ *
+ * @author Bas Calders
+ */
 public abstract class LevelState extends GameState {
-
+    //factory
     private final AFactory f;
 
+    //enemy vars
     private boolean enemiesGoingRight, isAtEdge;
     private double speed;
 
+    //gameplay vars
     protected int score, lives, time, hiScore = -1;
     protected long levelStartTime;
 
+    //entities
     protected PlayerShip ps;
     protected ArrayList<EnemyShip> enemies;
     protected ArrayList<Bullet> bullets;
     protected ArrayList<Bonus> bonusses;
 
+    /**
+     * constructor of Levelstate
+     *
+     * @param gsm instance of the gamestatemanager
+     * @param f   abstract factory to generate objects
+     */
     public LevelState(GameStateManager gsm, AFactory f) {
         super(gsm);
         this.f = f;
     }
 
+    /**
+     * lose function
+     */
     private void lose() {
         System.out.println("Time: " + time + " Lives: " + lives);
         gsm.setScores(score, lives, time);
         gsm.setState(GameStateManager.GAMEOVERSTATE);
     }
 
+    /**
+     * win function
+     */
     private void win() {
         gsm.setScores(score, lives, time);
         gsm.setState(GameStateManager.WINSTATE);
     }
 
+    /**
+     * kill enemyship
+     *
+     * @param e          killed ship
+     * @param multiplyer points multiplyer if bonus
+     */
     private void kill(EnemyShip e, int multiplyer) {
         e.kill();
         score += 200 * multiplyer;
     }
 
+    /**
+     * fire a bullet as the player
+     */
     public void playerFire() {
         if (ps.canFire()) {
             ps.fire();
@@ -55,6 +84,11 @@ public abstract class LevelState extends GameState {
         }
     }
 
+    /**
+     * fire a bullet as an enemy
+     *
+     * @param e enemy that fires
+     */
     public void enemyShoot(EnemyShip e) {
         Bullet b = f.createBullet();
         b.setEnemyBullet();
@@ -62,12 +96,21 @@ public abstract class LevelState extends GameState {
         bullets.add(b);
     }
 
+    /**
+     * spawn a bonus
+     *
+     * @param kind kind of the bonus
+     * @param xLoc location on the x-axis
+     */
     public void spawnBonus(int kind, int xLoc) {
         Bonus b = f.createBonus(kind);
         b.setPosition((xLoc - 27) / 10.0, 3.9);
         bonusses.add(b);
     }
 
+    /**
+     * spawn enemy Formation and add to enemy list
+     */
     protected void spawnFormation() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 6; j++) {
@@ -78,6 +121,11 @@ public abstract class LevelState extends GameState {
         }
     }
 
+    /**
+     * read highscore from file
+     *
+     * @return highscore
+     */
     private int readHiScore() {
 
         FileReader readFile;
@@ -100,6 +148,9 @@ public abstract class LevelState extends GameState {
         }
     }
 
+    /**
+     * init levelstate
+     */
     @Override
     public void init() {
 
@@ -127,6 +178,9 @@ public abstract class LevelState extends GameState {
         hiScore = readHiScore();
     }
 
+    /**
+     * update levelstate
+     */
     @Override
     public void update() {
         time = (int) Math.ceil(System.currentTimeMillis() - levelStartTime) / 1000;
@@ -207,7 +261,7 @@ public abstract class LevelState extends GameState {
         //Generate Bonus
         int bonusRNG = 2500;
         int rInt = r.nextInt(bonusRNG);
-        if (rInt < 4) {
+        if ((rInt < 4) && time > 9) {
             spawnBonus(rInt, r.nextInt(54));
             f.createBonus(rInt);
         }
@@ -223,7 +277,7 @@ public abstract class LevelState extends GameState {
                 ps.bonus(tempBo.getKind());
                 if ((tempBo.getKind() == 2) && lives < 3) lives++;
                 if (tempBo.getKind() == 3) {
-                    for (EnemyShip j: enemies) {
+                    for (EnemyShip j : enemies) {
                         j.setPosition(j.getX(), j.getY() + 0.5);
                     }
                 }
@@ -251,6 +305,11 @@ public abstract class LevelState extends GameState {
 
     public abstract void draw();
 
+    /**
+     * get inputs
+     *
+     * @param key inputted key
+     */
     @Override
     public void input(KeyHandler key) {
         if (key.left.isDown) {

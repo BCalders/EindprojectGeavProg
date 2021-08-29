@@ -3,13 +3,23 @@ package be.uantwerpen.fti.ei.bc.Graphics.Audio;
 import javax.sound.sampled.*;
 import java.io.File;
 
-
+/**
+ * class responsible for playing audio cues
+ *
+ * @author Bas Calders
+ */
 public class AudioPlayer {
 
+    //clip
     private Clip clip;
 
+    /**
+     * audioplayer constructor
+     *
+     * @param s      audio file location
+     * @param volume volume of player
+     */
     public AudioPlayer(String s, float volume) {
-        System.out.println(s);
         try {
             File file = new File(s);
             AudioInputStream ais = AudioSystem.getAudioInputStream(file);
@@ -34,17 +44,26 @@ public class AudioPlayer {
         gainControl.setValue(dB);
     }
 
-    public void play(){
+    /**
+     * play audioplayer
+     */
+    public void play() {
         assert clip != null;
         clip.setFramePosition(0);
         clip.start();
     }
 
+    /**
+     * stop playing audioplayer
+     */
     public void stop() {
-        if(clip.isRunning()) clip.stop();
+        if (clip.isRunning()) clip.stop();
     }
 
-    public void close(){
+    /**
+     * close audioplayer
+     */
+    public void close() {
         stop();
         clip.close();
     }

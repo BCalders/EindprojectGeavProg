@@ -1,13 +1,20 @@
 package be.uantwerpen.fti.ei.bc.Game.GameState;
 
-import be.uantwerpen.fti.ei.bc.Graphics.Audio.AudioPlayer;
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
-
+/**
+ * abstract class for all gamestates
+ *
+ * @author Bas Calders
+ */
 public abstract class GameState {
 
+    //gamestatemanager
     protected GameStateManager gsm;
-    protected AudioPlayer bgMusic;
 
+    /**
+     * construcotr gamestate
+     * @param gsm instance of gamestatemanager
+     */
     public GameState(GameStateManager gsm){
         this.gsm = gsm;
     }

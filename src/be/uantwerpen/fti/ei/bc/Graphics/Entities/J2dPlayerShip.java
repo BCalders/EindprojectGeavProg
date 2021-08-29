@@ -8,19 +8,33 @@ import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Playership rendering class
+ *
+ * @author Bas Calders
+ */
 public class J2dPlayerShip extends PlayerShip {
 
+    //rendering
     private final J2dGraph graph;
     private static BufferedImage[] sprites;
-    private final Color doubleColor = new Color(255, 255, 128), shieldColor = new Color(128, 128, 255);
 
+    //audioplayer
     private static final AudioPlayer playerHit = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Player/PlayerHit.wav", J2dGraph.SFXVOL);
 
+    /**
+     * j2dplayer constructor
+     *
+     * @param graph graphics class
+     */
     public J2dPlayerShip(J2dGraph graph) {
         super();
         this.graph = graph;
     }
 
+    /**
+     * load necessary sprites from texturehandler
+     */
     public static void loadsprites() {
         sprites = TextureHandler.getPlayershipTextures();
     }
@@ -36,21 +50,18 @@ public class J2dPlayerShip extends PlayerShip {
         super.update();
     }
 
+    /**
+     * draw playership on screen
+     */
     @Override
     public void draw() {
         Graphics2D g2d = graph.getG2d();
 
+        //calculate coords
         int xCoord = (int) graph.calculateX(getX());
         int yCoord = (int) graph.calculateY(getY());
         int width2 = (int) graph.reformX(width);
         int height2 = (int) graph.reformY(height);
-
-        int xCCoord = (int) graph.calculateX(getX() + (width - cWidth) / 2);
-        int yCCoord = (int) graph.calculateY(getY() - (height - cHeight) / 2);
-        int cwidth2 = (int) graph.reformX(cWidth);
-        int cheight2 = (int) graph.reformY(cHeight);
-
-        //Test generation
 
         if (isFlinching) {
             long elapsed = (System.currentTimeMillis() - flinchtimer);

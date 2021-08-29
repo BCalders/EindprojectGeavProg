@@ -4,18 +4,30 @@ import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
 import java.io.*;
 
+/**
+ * state when won
+ *
+ * @author Bas Calders
+ */
 public abstract class WinState extends GameState {
 
+    //scores
     protected String[] scoreNames;
-
     private int score, lives, time, totalScore;
     protected boolean isHighscore;
 
-
+    /**
+     * winstate constructor
+     * @param gsm instance of gamestatemanger
+     */
     public WinState(GameStateManager gsm) {
         super(gsm);
     }
 
+    /**
+     * read highscore from file
+     * @return highscore
+     */
     private int readHiScore() {
 
         FileReader readFile;
@@ -38,6 +50,10 @@ public abstract class WinState extends GameState {
         }
     }
 
+    /**
+     * write highscore to file
+     * @param score highscore value
+     */
     private void setHiScore(int score) {
         File scoreFile = new File("src/be/uantwerpen/fti/ei/bc/Resources/Data/hiScore.dat");
         if (!scoreFile.exists()) {
@@ -64,6 +80,9 @@ public abstract class WinState extends GameState {
         }
     }
 
+    /**
+     * init winstate
+     */
     @Override
     public void init() {
         scoreNames = new String[]{"Score: ", "Lives: ", "Time: ", "Total: "};
@@ -78,6 +97,10 @@ public abstract class WinState extends GameState {
         }
     }
 
+    /**
+     * calculate score
+     * @return score
+     */
     public String[] getScoreCalc() {
         String[] scoreCalc = new String[]{
                 score + "",                 // om er een string van te maken
@@ -95,6 +118,11 @@ public abstract class WinState extends GameState {
     @Override
     public abstract void draw();
 
+    /**
+     * get inputs
+     *
+     * @param key inputted key
+     */
     @Override
     public void input(KeyHandler key) {
         if (key.enter.isClicked()) gsm.setState(GameStateManager.MENUSTATE);

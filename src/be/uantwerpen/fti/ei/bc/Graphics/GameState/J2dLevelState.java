@@ -15,12 +15,26 @@ import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * levelstate rendering class
+ *
+ * @author Bas Calders
+ */
 public class J2dLevelState extends LevelState {
 
+    //graph
     private final J2dGraph gr;
 
+    //sprites
     private BufferedImage livesTexture;
 
+    /**
+     * j2dlevelstate constructor
+     *
+     * @param graph graphics class
+     * @param gsm   gamestatemanger
+     * @param f     abstract factory
+     */
     public J2dLevelState(J2dGraph graph, GameStateManager gsm, AFactory f) {
         super(gsm, f);
         this.gr = graph;
@@ -43,6 +57,9 @@ public class J2dLevelState extends LevelState {
         J2dGraph.bg.update();
     }
 
+    /**
+     * draw levelstate to screen
+     */
     @Override
     public void draw() {
         Graphics2D g2d = gr.getG2d();
@@ -64,7 +81,7 @@ public class J2dLevelState extends LevelState {
         }
 
         //draw bonusses
-        for(Bonus i : bonusses){
+        for (Bonus i : bonusses) {
             i.draw();
         }
 

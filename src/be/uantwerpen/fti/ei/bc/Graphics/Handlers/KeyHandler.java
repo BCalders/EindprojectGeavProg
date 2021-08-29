@@ -6,19 +6,38 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+/**
+ * Keyhandler, used to get inputs
+ *
+ * @author Bas Calders
+ */
 public class KeyHandler implements KeyListener {
 
+    //keylist
     public static ArrayList<Key> keys = new ArrayList<>();
 
+    /**
+     * keys class, used in KeyHandler
+     *
+     * @author Bas Calders
+     */
     public static class Key {
         private int presses, absorbs;
         public boolean isDown;
         private boolean isClicked;
 
+        /**
+         * key constructor and add to key list
+         */
         public Key() {
             keys.add(this);
         }
 
+        /**
+         * toggle press
+         *
+         * @param isPressed if key is pressed
+         */
         public void toggle(boolean isPressed) {
             if (isPressed != isDown) {
                 isDown = isPressed;
@@ -28,6 +47,11 @@ public class KeyHandler implements KeyListener {
             }
         }
 
+        /**
+         * key click
+         *
+         * @return isclicked
+         */
         public boolean isClicked() {
             if (isClicked) {
                 isClicked = false;
@@ -36,6 +60,9 @@ public class KeyHandler implements KeyListener {
                 return false;
         }
 
+        /**
+         * tick key
+         */
         public void tick() {
             if (absorbs < presses) {
                 absorbs++;
@@ -46,6 +73,7 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    //generate keys
     public Key up = new Key();
     public Key down = new Key();
     public Key left = new Key();
@@ -57,22 +85,39 @@ public class KeyHandler implements KeyListener {
     public Key shift = new Key();
     public Key control = new Key();
 
+    /**
+     * keyhandler constructor
+     *
+     * @param gr graphics class
+     */
     public KeyHandler(J2dGraph gr) {
         gr.getFrame().addKeyListener(this);
     }
 
+    /**
+     * release all keys
+     */
     public void releaseAll() {
         for (Key i : keys) {
             i.isDown = false;
         }
     }
 
+    /**
+     * tick all keys
+     */
     public void tick() {
         for (Key i : keys) {
             i.tick();
         }
     }
 
+    /**
+     * toggle a key
+     *
+     * @param e       keyevent
+     * @param pressed isdown
+     */
     public void toggle(KeyEvent e, boolean pressed) {
         if (e.getKeyCode() == KeyEvent.VK_UP) up.toggle(pressed);
         if (e.getKeyCode() == KeyEvent.VK_DOWN) down.toggle(pressed);

@@ -9,15 +9,28 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Background class, purely graphical
+ *
+ * @author Bas Calders
+ */
 public class Background {
 
+    //graph
     private final J2dGraph gr;
 
-    private BufferedImage image;
+    //background image
+    private final BufferedImage image;
 
+    //background pos en vect
     private static double x, y;
     private double dx, dy;
 
+    /**
+     * background constructor
+     *
+     * @param gr graphics class
+     */
     public Background(J2dGraph gr) {
         this.gr = gr;
         image = TextureHandler.backgroundTexture;
@@ -28,11 +41,17 @@ public class Background {
         this.dy = dy;
     }
 
+    /**
+     * update background
+     */
     public void update() {
         x = (x + dx) % J2dGraph.WIDTH;
         y = (y + dy) % J2dGraph.HEIGHT;
     }
 
+    /**
+     * draw background to screen
+     */
     public void draw() {
         Graphics2D g2d = gr.getG2d();
         g2d.drawImage(image, (int) x, (int) y, J2dGraph.WIDTH, J2dGraph.HEIGHT, null);

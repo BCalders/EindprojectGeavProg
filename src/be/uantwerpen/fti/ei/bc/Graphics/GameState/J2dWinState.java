@@ -7,19 +7,33 @@ import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
 
+/**
+ * winstate rendering class
+ *
+ * @author Bas Calders
+ */
 public class J2dWinState extends WinState {
 
+    //graph
     private final J2dGraph gr;
 
-
+    //colors and fonts
     private Color titleColor, selectColor, winColor, winColorDarker;
     private Font titleFont, font;
 
+    //graphic vars and booleans
     private boolean linesVisible, isBlinking;
     private int linesVisibleCount, blinkingCounter;
 
+    //audioplayer
     private static final AudioPlayer victory = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Player/victory.wav", J2dGraph.SFXVOL);
 
+    /**
+     * j2dwinstate constructor
+     *
+     * @param graph graphics class
+     * @param gsm   gamestatemanager
+     */
     public J2dWinState(J2dGraph graph, GameStateManager gsm) {
         super(gsm);
         this.gr = graph;
@@ -65,6 +79,9 @@ public class J2dWinState extends WinState {
         }
     }
 
+    /**
+     * draw winstate to screen
+     */
     @Override
     public void draw() {
         Graphics2D g2d = gr.getG2d();
@@ -80,7 +97,7 @@ public class J2dWinState extends WinState {
             if (isBlinking) g2d.setColor(winColor);
             else g2d.setColor(winColorDarker);
             g2d.setFont(font);
-            g2d.drawString(hiscore, (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(hiscore)) / 2 , J2dGraph.HEIGHT / 8);
+            g2d.drawString(hiscore, (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(hiscore)) / 2, J2dGraph.HEIGHT / 8);
         }
 
 

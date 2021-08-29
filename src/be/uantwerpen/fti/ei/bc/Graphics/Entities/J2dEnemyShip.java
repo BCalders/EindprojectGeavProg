@@ -9,15 +9,30 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+
+/**
+ * enemyship rendering class
+ *
+ * @author Bas Calders
+ */
 public class J2dEnemyShip extends EnemyShip {
 
+    //graph
     private final J2dGraph graph;
 
+    //sprites
     private static ArrayList<BufferedImage[]> sprites;
     private final Animation animation = new Animation();
 
+    //audioplayer
     private static final AudioPlayer eHit = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Enemies/EnemyHit2.wav", J2dGraph.SFXVOL);
 
+    /**
+     * j2dEnemyship constructor
+     *
+     * @param graph graphics class
+     * @param type  enemy type
+     */
     public J2dEnemyShip(J2dGraph graph, int type) {
         super(type);
         this.graph = graph;
@@ -25,6 +40,9 @@ public class J2dEnemyShip extends EnemyShip {
         animation.setDelay(250);
     }
 
+    /**
+     * load sprites from texturehandler
+     */
     public static void loadsprites() {
         sprites = TextureHandler.getEnemyTextures();
     }
@@ -41,6 +59,9 @@ public class J2dEnemyShip extends EnemyShip {
         animation.update();
     }
 
+    /**
+     * draw enemies to screen
+     */
     @Override
     public void draw() {
         Graphics2D g2d = graph.getG2d();
@@ -49,11 +70,6 @@ public class J2dEnemyShip extends EnemyShip {
         int yCoord = (int) graph.calculateY(getY());
         int width2 = (int) graph.reformX(width);
         int height2 = (int) graph.reformY(height);
-
-        int xCCoord = (int) graph.calculateX(getX() + (width - cWidth) / 2);
-        int yCCoord = (int) graph.calculateY(getY() - (height - cHeight) / 2);
-        int cwidth2 = (int) graph.reformX(cWidth);
-        int cheight2 = (int) graph.reformY(cHeight);
 
         //draw enemyship
         g2d.drawImage(animation.getFrame(), xCoord, yCoord, width2, height2, null);

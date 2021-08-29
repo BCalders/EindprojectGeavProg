@@ -8,18 +8,32 @@ import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * menustate rendering class
+ *
+ * @author Bas Calders
+ */
 public class J2dMenuState extends MenuState {
 
+    //graph
     private final J2dGraph gr;
 
+    //colors and fonts
     private Color titleColor, selectColor;
     private Font titleFont, font, selectFont;
 
+    //graphic vars and booleans
     private boolean isBlinking;
     private int blinkingCounter;
 
+    //sprites
     private BufferedImage icon;
 
+    /**
+     * j2dMenustate constructor
+     * @param gr graphics class
+     * @param gsm gamestatemanager
+     */
     public J2dMenuState(J2dGraph gr, GameStateManager gsm) {
         super(gsm);
         this.gr = gr;
@@ -59,6 +73,10 @@ public class J2dMenuState extends MenuState {
         }
     }
 
+
+    /**
+     * draw menustate to screen
+     */
     @Override
     public void draw() {
         Graphics2D g2d = gr.getG2d();

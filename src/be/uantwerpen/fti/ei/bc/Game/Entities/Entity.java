@@ -1,5 +1,10 @@
 package be.uantwerpen.fti.ei.bc.Game.Entities;
 
+/**
+ * Abstract entity superclass
+ *
+ * @author Bas Calders
+ */
 public abstract class Entity {
 
     //pos and vect
@@ -12,6 +17,7 @@ public abstract class Entity {
     //collision box
     protected double cWidth, cHeight;
 
+    //speed
     protected double speed;
 
     public Entity() {
@@ -72,9 +78,15 @@ public abstract class Entity {
         this.dy = dy;
     }
 
+    /**
+     * checks for intersection with other entity
+     *
+     * @param o other entity to be tested
+     * @return true if intersecting with o.
+     */
     public boolean intersects(Entity o) {
 
-        return (x < o.x + o.cWidth) && (o.x < x + cWidth) && (y < o.y + cHeight) && (o.y < y + cHeight) ;
+        return (x < o.x + o.cWidth) && (o.x < x + cWidth) && (y < o.y + cHeight) && (o.y < y + cHeight);
     }
 
 }

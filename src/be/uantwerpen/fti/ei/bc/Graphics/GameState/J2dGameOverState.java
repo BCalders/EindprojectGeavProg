@@ -7,19 +7,33 @@ import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
 
-
+/**
+ * gameoverstate graphics class
+ *
+ * @author Bas Calders
+ */
 public class J2dGameOverState extends GameOverState {
 
+    //graph
     private final J2dGraph gr;
 
+    //colors and fonts
     private Color titleColor;
     private Font titleFont, font;
 
+    //graphics vars and booleans
     private boolean linesVisible;
     private int linesVisibleCount;
 
+    //audioplayer
     private static final AudioPlayer gameOver = new AudioPlayer("src/be/uantwerpen/fti/ei/bc/Resources/SFX/Player/Game Over.wav", J2dGraph.MVOL);
 
+    /**
+     * j2dGameoverstate constructor
+     *
+     * @param graph graphics class
+     * @param gsm   gamestatemanager
+     */
     public J2dGameOverState(J2dGraph graph, GameStateManager gsm) {
         super(gsm);
         this.gr = graph;
@@ -56,6 +70,9 @@ public class J2dGameOverState extends GameOverState {
         }
     }
 
+    /**
+     * draw gameoverstate to screen
+     */
     @Override
     public void draw() {
         Graphics2D g2d = gr.getG2d();
@@ -82,7 +99,7 @@ public class J2dGameOverState extends GameOverState {
         g2d.drawString(reason, reason2Xlocation, titleYLocation + 90);
 
         //Draw return
-        String returnString= "Press ENTER to continue";
+        String returnString = "Press ENTER to continue";
         if (linesVisible)
             returnString = "-- Press ENTER to continue --";
         int returnXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString)) / 2;

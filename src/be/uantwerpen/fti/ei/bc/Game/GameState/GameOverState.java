@@ -2,14 +2,26 @@ package be.uantwerpen.fti.ei.bc.Game.GameState;
 
 import be.uantwerpen.fti.ei.bc.Graphics.Handlers.KeyHandler;
 
+/**
+ * state if gameover
+ *
+ * @author Bas Calders
+ */
 public abstract class GameOverState extends GameState {
 
     protected String reason = null;
 
+    /**
+     * gameover constructor
+     * @param gsm instance of gamestatemanger
+     */
     public GameOverState(GameStateManager gsm) {
         super(gsm);
     }
 
+    /**
+     * init gameoverstate
+     */
     @Override
     public void init() {
         int[] scores = gsm.getScores();
@@ -28,6 +40,11 @@ public abstract class GameOverState extends GameState {
     @Override
     public abstract void draw();
 
+    /**
+     * get inputs
+     *
+     * @param key inputted key
+     */
     @Override
     public void input(KeyHandler key) {
         if (key.enter.isClicked()) gsm.setState(GameStateManager.MENUSTATE);

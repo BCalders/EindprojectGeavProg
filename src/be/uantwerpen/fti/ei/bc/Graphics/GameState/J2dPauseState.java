@@ -6,16 +6,30 @@ import be.uantwerpen.fti.ei.bc.Graphics.Main.J2dGraph;
 
 import java.awt.*;
 
+/**
+ * pausestate rendering class
+ *
+ * @author Bas Calders
+ */
 public class J2dPauseState extends PauseState {
 
+    //graph
     private final J2dGraph gr;
 
+    //colors and fonts
     private Color titleColor;
     private Font titleFont, font;
 
+    //graphics vars and booleans
     private boolean linesVisible;
     private int linesVisibleCount;
 
+    /**
+     * j2dPausestate constructor
+     *
+     * @param graph graphicsclass
+     * @param gsm   gamestatemanager
+     */
     public J2dPauseState(J2dGraph graph, GameStateManager gsm) {
         super(gsm);
         this.gr = graph;
@@ -46,6 +60,9 @@ public class J2dPauseState extends PauseState {
         }
     }
 
+    /**
+     * draw pausestate to screen
+     */
     @Override
     public void draw() {
         Graphics2D g2d = gr.getG2d();
@@ -54,8 +71,8 @@ public class J2dPauseState extends PauseState {
         pausedState.draw();
 
         //draw transparent haze
-        g2d.setColor(new Color(0,0,0, 0.5f));
-        g2d.fillRect(0,0, J2dGraph.WIDTH, J2dGraph.HEIGHT);
+        g2d.setColor(new Color(0, 0, 0, 0.5f));
+        g2d.fillRect(0, 0, J2dGraph.WIDTH, J2dGraph.HEIGHT);
 
         //draw Title
         int titleXLocation, titleYLocation;
@@ -72,7 +89,7 @@ public class J2dPauseState extends PauseState {
         if (linesVisible) {
             String returnString = "-- Press 'P' to continue --";
             int returnXLocation = (J2dGraph.WIDTH - g2d.getFontMetrics(g2d.getFont()).stringWidth(returnString)) / 2;
-            int returnYLocation = J2dGraph.HEIGHT /2;
+            int returnYLocation = J2dGraph.HEIGHT / 2;
             g2d.drawString(returnString, returnXLocation, returnYLocation);
         } else {
             String returnString = "Press 'P' to continue";
