@@ -68,6 +68,7 @@ public abstract class Entity {
     public void setVector(double dx, double dy) {
         this.dx = dx;
         this.dy = dy;
+        System.out.println(dy);
     }
 
     public void setDx(double dx) {

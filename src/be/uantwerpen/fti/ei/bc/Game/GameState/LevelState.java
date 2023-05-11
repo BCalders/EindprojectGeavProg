@@ -65,11 +65,11 @@ public abstract class LevelState extends GameState {
      * kill enemyship
      *
      * @param e          killed ship
-     * @param multiplyer points multiplyer if bonus
+     * @param multiplier points multiplyer if bonus
      */
-    private void kill(EnemyShip e, int multiplyer) {
+    private void kill(EnemyShip e, int multiplier) {
         e.kill();
-        score += 200 * multiplyer;
+        score += 200 * multiplier;
     }
 
     /**
